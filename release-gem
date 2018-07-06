@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Add the artifactory gem source
+gem source -a https://$ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD@trusona.jfrog.io/trusona/api/gems/trusona-rubygems/
+
+# fetch the gem credentials file from artifactory
+curl -u$ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD https://trusona.jfrog.io/trusona/api/gems/trusona-rubygems/api/v1/api_key.yaml > ~/.gem/credentials
+
+# change permissions on the fetched credentials file
+chmod 600 ~/.gem/credentials
+
+# build the gem
+gem build trusona.gemspec
+
+# push the gem to artifactory
+gem push trusona-*.gem  --host https://trusona.jfrog.io/trusona/api/gems/trusona-rubygems
+
+# push to rubygems
+echo -e "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}" > ~/.gem/credentials
+gem push trusona-*.gem

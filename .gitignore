@@ -1,0 +1,21 @@
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+*.gem
+*.key.pem
+
+# rspec failure tracking
+.rspec_status
+
+# dotenv
+.env
+.env.test
+
+test.rb
+.vscode
