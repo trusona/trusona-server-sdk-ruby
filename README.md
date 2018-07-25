@@ -5,6 +5,8 @@ Easily interact with the Trusona REST API.
 ## Current Status
 
 [![Build Status](https://travis-ci.com/lighthauz/trusona-server-sdk-ruby.svg?token=2f2CMAnop6pxz1LFFPky&branch=master)](https://travis-ci.com/lighthauz/trusona-server-sdk-ruby)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ec9f4f928125c278fa39/maintainability)](https://codeclimate.com/github/trusona/trusona-server-sdk-ruby/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ec9f4f928125c278fa39/test_coverage)](https://codeclimate.com/github/trusona/trusona-server-sdk-ruby/test_coverage)
 
 ## Requirements
 The Trusona SDK requires Ruby version 2.4.0 or higher.
