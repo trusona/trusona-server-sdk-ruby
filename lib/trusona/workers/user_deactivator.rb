@@ -10,7 +10,9 @@ module Trusona
       end
 
       def deactivate(user_identifier)
-        raise(ArgumentError, "The user's identifier is required") if user_identifier.nil? || user_identifier.empty?
+        if user_identifier.nil? || user_identifier.empty?
+          raise(ArgumentError, "The user's identifier is required")
+        end
 
         user = Trusona::Resources::User.new(user_identifier: user_identifier)
         @service.delete(user)
