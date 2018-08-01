@@ -35,6 +35,11 @@ module Trusona
         handle(@client.patch(member_path(resource), resource.to_json), resource)
       end
 
+      def delete(resource)
+        raise Trusona::InvalidResourceError unless resource.id
+        handle(@client.delete(member_path(resource)), resource)
+      end
+
       def collection_path
         @resource_path
       end
