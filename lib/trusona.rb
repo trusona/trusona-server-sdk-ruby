@@ -54,6 +54,7 @@ require 'trusona/mappers/user_identifier_mapper'
 require 'trusona/mappers/device_user_binding_mapper'
 require 'trusona/mappers/identity_document_mapper'
 require 'trusona/mappers/device_mapper'
+require 'trusona/mappers/user_mapper'
 
 require 'trusona/resources/validators'
 require 'trusona/resources/base_resource'
