@@ -32,6 +32,7 @@ require 'trusona/workers/trusonafication_creator'
 require 'trusona/workers/trusonafication_finder'
 require 'trusona/workers/identity_document_finder'
 require 'trusona/workers/device_finder'
+require 'trusona/workers/user_deactivator'
 
 require 'trusona/services/base_service'
 require 'trusona/services/user_accounts_service'
