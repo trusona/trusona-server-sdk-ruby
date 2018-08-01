@@ -15,6 +15,7 @@ require 'trusona/user_identifier'
 require 'trusona/device_user_binding'
 require 'trusona/identity_document'
 require 'trusona/device'
+require 'trusona/user'
 
 require 'trusona/api/signed_request'
 require 'trusona/api/verified_response'
