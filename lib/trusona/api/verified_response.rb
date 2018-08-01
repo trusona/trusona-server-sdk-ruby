@@ -73,12 +73,7 @@ module Trusona
       end
 
       def parse_method(method)
-        case method.to_s
-        when Net::HTTP::Post.to_s
-          'POST'
-        else
-          'GET'
-        end
+        method::METHOD
       end
     end
   end
