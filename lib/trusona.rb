@@ -65,6 +65,7 @@ require 'trusona/resources/device_user_binding'
 require 'trusona/resources/device_user_binding_activation'
 require 'trusona/resources/identity_document'
 require 'trusona/resources/device'
+require 'trusona/resources/user'
 
 # Trusona
 module Trusona
