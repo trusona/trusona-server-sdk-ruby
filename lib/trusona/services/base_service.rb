@@ -25,7 +25,6 @@ module Trusona
       end
 
       def create(resource)
-        puts resource.to_json
         raise Trusona::InvalidResourceError unless resource.valid?
         handle(@client.post(collection_path, resource.to_json), resource)
       end

@@ -61,6 +61,8 @@ module Trusona
       def get(_uri, _params); end
 
       def patch(_uri, _params); end
+
+      def delete(_uri, _params); end
     end
   end
 end
