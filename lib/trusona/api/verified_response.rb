@@ -15,7 +15,7 @@ module Trusona
       end
 
       def to_h
-        JSON.parse(@unverified.body)
+        JSON.parse(@unverified.body) rescue {}
       end
 
       def verified?
