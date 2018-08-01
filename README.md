@@ -18,6 +18,7 @@ The Trusona SDK requires Ruby version 2.4.0 or higher.
 * [Device and User Bindings](#device-and-user-bindings)
 * [Trusonafications](#trusonafications)
 * [Devices](#devices)
+* [Users](#users)
 
 ### Installation
 
@@ -189,6 +190,22 @@ If you want to check whether or not a device has been activated, or when it was 
     # dance
   end
 ```
+
+### Users
+
+#### Creating a User
+
+Users are created implicitly the first time you bind a user to a device.
+
+#### Deactivating a User
+
+You may wish to disable a user from having the ability to authenticate from any of the devices they have registered with. To deactivate a user:
+
+```ruby
+  Trusona::User.deactivate(user_identifier: '83452353-4F7B-4CA2-BBCD-57ACE7279EA0')
+```
+
+The deactivated user can be reactivated at a later date by binding them to a new device in Trusona.
 
 ## Development
 
