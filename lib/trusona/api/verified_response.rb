@@ -10,8 +10,8 @@ module Trusona
 
       def initialize(unverified)
         @unverified = unverified
+        @code       = unverified.code
         @verified   = verify
-        @code = unverified.code
       end
 
       def to_h
