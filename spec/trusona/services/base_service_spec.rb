@@ -639,5 +639,154 @@ RSpec.describe Trusona::Services::BaseService do
       end
     end
   end
+
+  describe 'deleting a resource' do
+    it 'should raise an error if the resource is missing an id' do
+      sut = Trusona::Services::BaseService.new
+      resource = double(id: nil)
+
+      expect { sut.delete(resource) }.to raise_error(Trusona::InvalidResourceError)
+    end
+
+    it 'should tell the client to DELETE the resource' do
+      resource = double(id: 'resource-1')
+      client = double
+      mapper = double(map: Object.new)
+      sut = Trusona::Services::BaseService.new(client: client, mapper: mapper)
+      sut.resource_path = '/widgets'
+
+      expect(client).to receive(:delete).with('/widgets/resource-1').and_return(
+        @verified_response_double
+      )
+      sut.delete(resource)
+    end
+
+    it 'should tell the mapper to map the response' do
+      resource = double(id: 'resource-1')
+      client = double
+      mapper = double
+      sut = Trusona::Services::BaseService.new(
+        client: client,
+        mapper: mapper
+      )
+
+      allow(client).to receive(:delete).and_return(@verified_response_double)
+
+      expect(mapper).to receive(:map).with(@verified_response_double, resource)
+      sut.delete(resource)
+    end
+
+    context 'when the response cannot be verified' do
+      it 'should raise an error' do
+        resource = double(id: 'resource-1')
+        client = double
+        mapper = double(map: Object.new)
+        sut = Trusona::Services::BaseService.new(
+          client: client,
+          mapper: mapper
+        )
+
+        allow(client).to receive(:delete).and_return(@unverified_response_double)
+        expect { sut.delete(resource) }.to raise_error(Trusona::SigningError)
+      end
+    end
+
+    context 'when the request fails' do
+      before do
+        @valid_resource = double(valid?: true, id: 1)
+      end
+      context 'for an unknown reason' do
+        it 'should raise an error' do
+          client = double(delete: @server_is_a_teapot_response)
+          sut = Trusona::Services::BaseService.new(client: client)
+
+          expect { sut.delete(@valid_resource) }.to(
+            raise_error(
+              Trusona::RequestError,
+              '[an error] a message - the description'
+            )
+          )
+        end
+      end
+      context 'because it was unauthorized' do
+        it 'should raise an error' do
+          client = double(delete: @unauthorized_response)
+          sut = Trusona::Services::BaseService.new(client: client)
+
+          expect { sut.delete(@valid_resource) }.to(
+            raise_error(
+              Trusona::UnauthorizedRequestError,
+              '[an error] a message - the description'
+            )
+          )
+        end
+      end
+
+      context 'because the request was malformed' do
+        it 'should raise an error' do
+          client = double(delete: @bad_request_response)
+          sut = Trusona::Services::BaseService.new(client: client)
+
+          expect { sut.delete(@valid_resource) }.to(
+            raise_error(
+              Trusona::BadRequestError,
+              '[an error] a message - the description'
+            )
+          )
+        end
+      end
+
+      context 'because the resource could not be found' do
+        it 'should raise an error' do
+          client = double(delete: @not_found_response)
+          sut = Trusona::Services::BaseService.new(client: client)
+
+          expect { sut.delete(@valid_resource) }.to(
+            raise_error(
+              Trusona::ResourceNotFoundError,
+              '[an error] a message - the description'
+            )
+          )
+        end
+      end
+
+      context 'because of a failed dependency' do
+        it 'should raise an error' do
+          client = double(delete: @failed_dependency_response)
+          sut = Trusona::Services::BaseService.new(client: client)
+
+          expect { sut.delete(@valid_resource) }.to(
+            raise_error(
+              Trusona::FailedDependencyError,
+              '[an error] a message - the description'
+            )
+          )
+        end
+      end
+
+      context 'because of a server error' do
+        it 'should raise an error' do
+          client = double(delete: @internal_server_error_response)
+          sut = Trusona::Services::BaseService.new(client: client)
+
+          expect { sut.delete(@valid_resource) }.to(
+            raise_error(Trusona::ApiError)
+          )
+        end
+      end
+
+      context 'because the server is unavailable' do
+        it 'should raise an error' do
+          client = double(delete: @server_busy_response)
+          sut = Trusona::Services::BaseService.new(client: client)
+
+          expect { sut.delete(@valid_resource) }.to(
+            raise_error(Trusona::ApiError)
+          )
+        end
+      end
+    end
+  end
+
 end
 # rubocop:enable Metrics/BlockLength

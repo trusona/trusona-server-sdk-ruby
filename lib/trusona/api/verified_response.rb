@@ -10,12 +10,12 @@ module Trusona
 
       def initialize(unverified)
         @unverified = unverified
+        @code       = unverified.code
         @verified   = verify
-        @code = unverified.code
       end
 
       def to_h
-        JSON.parse(@unverified.body)
+        JSON.parse(@unverified.body) rescue {}
       end
 
       def verified?
@@ -73,12 +73,7 @@ module Trusona
       end
 
       def parse_method(method)
-        case method.to_s
-        when Net::HTTP::Post.to_s
-          'POST'
-        else
-          'GET'
-        end
+        method::METHOD
       end
     end
   end

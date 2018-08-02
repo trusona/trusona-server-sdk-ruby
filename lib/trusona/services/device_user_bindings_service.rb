@@ -13,10 +13,6 @@ module Trusona
         @mapper = mapper
         @resource_path = '/api/v2/user_devices'
       end
-
-      def verify_response(_response)
-        true
-      end
     end
   end
 end

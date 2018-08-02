@@ -5,9 +5,11 @@ module Trusona
     #
     ## An a wrapper around HTTParty
     class HTTPClient
-      POST  = 'POST'
-      GET   = 'GET'
-      PATCH = 'PATCH'
+      POST   = 'POST'
+      GET    = 'GET'
+      PATCH  = 'PATCH'
+      DELETE = 'DELETE'
+
       CONTENT_TYPE = 'application/json;charset=utf-8'
 
       def initialize(host = nil)
@@ -24,6 +26,10 @@ module Trusona
 
       def get(path, params = {})
         execute(path, params, GET)
+      end
+
+      def delete(path, params = {})
+        execute(path, params, DELETE)
       end
 
       private
@@ -55,6 +61,8 @@ module Trusona
       def get(_uri, _params); end
 
       def patch(_uri, _params); end
+
+      def delete(_uri, _params); end
     end
   end
 end

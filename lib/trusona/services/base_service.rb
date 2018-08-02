@@ -25,7 +25,6 @@ module Trusona
       end
 
       def create(resource)
-        puts resource.to_json
         raise Trusona::InvalidResourceError unless resource.valid?
         handle(@client.post(collection_path, resource.to_json), resource)
       end
@@ -33,6 +32,11 @@ module Trusona
       def update(resource)
         raise Trusona::InvalidResourceError unless resource.id
         handle(@client.patch(member_path(resource), resource.to_json), resource)
+      end
+
+      def delete(resource)
+        raise Trusona::InvalidResourceError unless resource.id
+        handle(@client.delete(member_path(resource)), resource)
       end
 
       def collection_path
