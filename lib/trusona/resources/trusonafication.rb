@@ -9,7 +9,7 @@ module Trusona
       include Trusona::Helpers::TimeNormalizer
 
       attr_accessor :device_identifier, :user_identifier, :trucode_id,
-                    :resource, :action, :level, :id,
+                    :resource, :action, :level, :id, :email,
                     :accepted_level, :trusona_id, :expires_at,
                     :user_presence, :callback_url, :prompt
 
@@ -23,6 +23,7 @@ module Trusona
         self.device_identifier = @params[:device_identifier]
         self.user_identifier   = @params[:user_identifier]
         self.trucode_id        = @params[:trucode_id]
+        self.email             = @params[:email]
         self.expires_at        = normalize_time(@params[:expires_at])
         self.id                = @params[:id]
         self.level             = @params[:level]
@@ -47,6 +48,7 @@ module Trusona
              user_identifier: user_identifier,
              trucode_id: trucode_id,
              trusona_id: trusona_id,
+             email: email,
              resource: resource,
              action: action,
              desired_level: level,
@@ -130,7 +132,7 @@ module Trusona
       end
 
       def identifier
-        device_identifier || user_identifier || trucode_id || trusona_id
+        device_identifier || user_identifier || trucode_id || trusona_id || email
       end
     end
   end

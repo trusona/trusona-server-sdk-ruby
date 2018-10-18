@@ -42,6 +42,9 @@ module Trusona
     # @option params [String] :user_identifier The user identifier,
     #  previously registered with Trusona, of the user to which this
     #  Trusonafication will be sent.
+    # @option params [String] :email The user email address,
+    #  previously registered with Trusona, of the user to which this
+    #  Trusonafication will be sent.
     # @option params [String] :trucode_id The TruCode ID that has either been
     #  scanned or will be scanned using the mobile SDK that will be used to
     #  determine which device to send the Trusonafication to.
@@ -86,7 +89,8 @@ module Trusona
       normalized_params[:user_identifier] ||
         normalized_params[:device_identifier] ||
         normalized_params[:trucode_id] ||
-        normalized_params[:trusona_id]
+        normalized_params[:trusona_id] ||
+        normalized_params[:email]
     end
   end
 
