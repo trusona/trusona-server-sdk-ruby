@@ -87,11 +87,9 @@ The binding requires two values, the user identifier that helps you identify the
   Trusona::DeviceUserBinding.activate(id: binding.id)
 ```
 
-### Trusonafications
+### Creating Trusonafications
 
-#### Creating a Trusonafication
-
-A simple Essential level Trusonafication
+#### Creating an Essential Trusonafication
 
 ```ruby
   Trusona::EssentialTrusonafication.create(params: {
@@ -101,17 +99,9 @@ A simple Essential level Trusonafication
    })
 ```
 
-An Executive level Trusonafication
+By default, Essential Trusonafications are built such that the user's presence is required and a prompt asking the user to "Accept" or "Reject" the Trusonafication is presented by the Trusona Mobile SDK. A user's presence is determined by their ability to interact with the device's OS Security, usually by using a biometric or entering the device passcode.
 
-```ruby
-  Trusona::ExecutiveTrusonafication.create(params: {
-    action: 'login',
-    resource: 'Acme Bank',
-    device_identifier: 'PBanKaajTmz_Cq1pDkrRzyeISBSBoGjExzp5r6-UjcI'
-   })
-```
-
-A more complex example, toggling optional fields
+#### Creating an Essential Trusonafication, without user presence or a prompt
 
 ```ruby
   Trusona::EssentialTrusonafication.create(params: {
@@ -123,7 +113,32 @@ A more complex example, toggling optional fields
    })
 ```
 
+In the above example, the addition of `user_presence: false` and `prompt: false` will result in a Trusonafication that can be accepted solely with possession of the device.
 
+#### Creating an Essential Trusonafication, with the user's email address
+```ruby
+  Trusona::EssentialTrusonafication.create(params: {
+    action: 'login',
+    resource: 'Acme Bank',
+    email: 'user@domain.com'
+   })
+```
+In some cases you may be able to send a Trusonafication to a user
+by specifying their email address. This is the case if one of the following is true:
+- You have verified ownership of a domain through the Trusona Developer's site
+- You have an agreement with Trusona allowing you to send Trusonafications to any email address.
+Creating a Trusonafication with an email address is similar to the other
+use cases, except you use the `email` parameter rather than `user_identifier` or `device_identifier`.
+
+#### An Executive level Trusonafication
+
+```ruby
+  Trusona::ExecutiveTrusonafication.create(params: {
+    action: 'login',
+    resource: 'Acme Bank',
+    device_identifier: 'PBanKaajTmz_Cq1pDkrRzyeISBSBoGjExzp5r6-UjcI'
+   })
+```
 
 #### Trusonafication Options
 
