@@ -64,6 +64,14 @@ RSpec.describe Trusona::Services::BaseService do
       verified?: true
     )
 
+    @unprocessable_entity_response = double(
+      Trusona::Api::VerifiedResponse,
+      success?: false,
+      to_h: @error_hash,
+      code: 422,
+      verified?: true
+    )
+
     @failed_dependency_response = double(
       Trusona::Api::VerifiedResponse,
       to_h: @error_hash,
@@ -219,6 +227,20 @@ RSpec.describe Trusona::Services::BaseService do
           expect { sut.get(@valid_resource) }.to(
             raise_error(
               Trusona::ResourceNotFoundError,
+              '[an error] a message - the description'
+            )
+          )
+        end
+      end
+
+      context 'because of an unprocessable entity (422)' do
+        it 'should raise an error' do
+          client = double(get: @unprocessable_entity_response)
+          sut = Trusona::Services::BaseService.new(client: client)
+
+          expect { sut.get(@valid_resource) }.to(
+            raise_error(
+              Trusona::UnprocessableEntityError,
               '[an error] a message - the description'
             )
           )

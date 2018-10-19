@@ -40,6 +40,10 @@ module Trusona
   class BadRequestError < RequestError; end
 
   ##
+  # An error resulting from 422 errors from the Trusona REST API
+  class UnprocessableEntityError < RequestError; end
+
+  ##
   # An error resulting from 424 errors from the Trusona REST API
   class FailedDependencyError < RequestError; end
 
