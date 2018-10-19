@@ -67,6 +67,8 @@ module Trusona
           not_found
         when 403
           unauthorized
+        when 422
+          unprocessable_entity
         when 424
           failed_dependency
         when 500..599
@@ -85,6 +87,10 @@ module Trusona
 
       def bad_request
         raise Trusona::BadRequestError, readable_error
+      end
+
+      def unprocessable_entity
+        raise Trusona::UnprocessableEntityError, readable_error
       end
 
       def failed_dependency
