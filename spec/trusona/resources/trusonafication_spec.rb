@@ -21,6 +21,7 @@ RSpec.describe Trusona::Resources::Trusonafication do
       device_identifier:      '16B52319-AD81-4AE8-AE40-14F4C3292947',
       trucode_id:             '2A99A895-A8A3-4C89-A087-06D6EBEE1E4F',
       trusona_id:             '123456789',
+      email:                  'african-tiger@jones.taco',
       user_presence:          true,
       level:                  2,
       result: {
@@ -385,10 +386,13 @@ RSpec.describe Trusona::Resources::Trusonafication do
       end
     end
 
-    context 'when the identifier is empty' do
+    context 'when the identifiers are empty' do
       it 'should not be valid' do
         @valid_params.update(device_identifier: '')
         @valid_params.update(user_identifier: '')
+        @valid_params.update(trucode_id: '')
+        @valid_params.update(trusona_id: '')
+        @valid_params.update(email: '')
         sut = Trusona::Resources::Trusonafication.new(@valid_params)
         expect(sut.valid?).to be_falsey
       end
@@ -400,6 +404,7 @@ RSpec.describe Trusona::Resources::Trusonafication do
         @valid_params.delete(:user_identifier)
         @valid_params.delete(:trucode_id)
         @valid_params.delete(:trusona_id)
+        @valid_params.delete(:email)
         sut = Trusona::Resources::Trusonafication.new(@valid_params)
         expect(sut.valid?).to be_falsey
       end
@@ -427,6 +432,19 @@ RSpec.describe Trusona::Resources::Trusonafication do
       it 'should be valid' do
         @valid_params.delete(:device_identifier)
         @valid_params.delete(:user_identifier)
+        @valid_params.delete(:trusona_id)
+        @valid_params.delete(:email)
+        sut = Trusona::Resources::Trusonafication.new(@valid_params)
+        expect(sut.valid?).to be_truthy
+      end
+    end
+
+    context 'when there is only an email' do
+      it 'should be valid' do
+        @valid_params.delete(:device_identifier)
+        @valid_params.delete(:user_identifier)
+        @valid_params.delete(:trusona_id)
+        @valid_params.delete(:trucode_id)
         sut = Trusona::Resources::Trusonafication.new(@valid_params)
         expect(sut.valid?).to be_truthy
       end

@@ -15,6 +15,7 @@ RSpec.describe Trusona::Mappers::TrusonaficationMapper do
         'accepted_level' => nil,
         'id' => '4f0b75f1-1ae8-47f6-9b50-65ec1b1bc8df',
         'status' => 'IN_PROGRESS',
+        'email' => 'african-tiger@taco.jones',
         'created_at' => 'Tue, 01 Jan 2013 04:39:43 GMT',
         'updated_at' => 'Tue, 01 Jan 2013 04:39:43 GMT',
         'result' => {
@@ -32,6 +33,7 @@ RSpec.describe Trusona::Mappers::TrusonaficationMapper do
       expect(result.user_identifier).to eq('andre3000')
       expect(result.action).to eq('enhance')
       expect(result.resource).to eq('claydentity')
+      expect(result.email).to eq('african-tiger@taco.jones')
       expect(result.level).to eq(1)
       expect(result.id).to eq('4f0b75f1-1ae8-47f6-9b50-65ec1b1bc8df')
     end
