@@ -4,10 +4,6 @@ module Trusona
   ##
   #
   class TruCodeConfig
-    def tru_code_url
-      "https://api.example.net/?relying_party_id=#{relying_party_id}"
-    end
-
     def relying_party_id
       jwt     = Trusona.config.token ||
                 raise_token_error
