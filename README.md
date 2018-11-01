@@ -151,7 +151,6 @@ use cases, except you use the `email` parameter rather than `user_identifier` or
 | Tru Code ID       | `trucode_id`        |    N[^1] | A Tru Code ID that has/will be paired by a device using the Trusona Mobile SDK that can be used to lookup the `device_identifier` |
 | User Presence     | `user_presence`     |    N     | Should the user be required to demonstrate presence (e.g. via Biometric) when accepting this Trusonafication? Defaults to `true`. |
 | Prompt            | `prompt`            |    N     | Should the user be prompted to Accept or Reject this Trusonafication? Defaults to `true`.                                         |
-| Callback URL      | `callback_url`      |    N     | A URL that will be called when the Trusonafication is completed.                                                                  |
 | Expiration        | `expires_at`        |    N     | The ISO-8601 UTC timestamp of the Trusonafication's expiration. Defaults to 90 seconds from creation.                             |
 
 [^1]: You must provide at least one field that would allow Trusona to determine which user to authenticate. The identifier fields are `device_identifier`, `user_identifier`, and `trucode_id`.
