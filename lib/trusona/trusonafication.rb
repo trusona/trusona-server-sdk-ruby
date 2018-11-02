@@ -53,8 +53,6 @@ module Trusona
     #  Trusonafication?
     # @option params [Boolean] :prompt (true) Should the user be prompted to
     #  Accept or Reject this Trusonafication?
-    # @option params [String] :callback_url ('') A URL that will be called when
-    #  the Trusonafication is completed.
     # @option params [String] :expires_at ('90 seconds') The ISO-8601 UTC
     #  timestamp of the Trusonafication's expiration.
     # @param timeout [Int] (30) The max amount of time, in seconds, to wait

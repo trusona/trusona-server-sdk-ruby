@@ -291,7 +291,6 @@ RSpec.describe Trusona::Resources::Trusonafication do
       expect(@sut.resource).to eq(@valid_params[:resource])
       expect(@sut.action).to eq(@valid_params[:action])
       expect(@sut.level).to eq(@valid_params[:level])
-      expect(@sut.callback_url).to eq(@valid_params[:callback_url])
       expect(@sut.expires_at).to_not be_nil
 
       expect(@sut.to_h).to eq(@valid_params)

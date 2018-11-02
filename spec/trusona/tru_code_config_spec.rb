@@ -63,18 +63,4 @@ RSpec.describe Trusona::TruCodeConfig do
       end
     end
   end
-  describe 'creating TruCode URLs for consumption by the Web SDK' do
-    it 'exposes a valid URL with the configured relying party id' do
-      Trusona.config do |c|
-        c.token = 'first.eyJzdWIiOiIwZjAzNDhmMC00NmQ2LTQ3YzktYmE0ZC0yZTdjZDdmODJlM2UiLCJuYmYiOjE1MTU1MzQ1MDIsImF0aCI6IlJPTEVfVFJVU1RFRF9SUCIsImlzcyI6InRzOjlmOGY1OTIwLWFjNGEtNDE1Zi1hODEwLWIzN2Y5Njk5M2JkZiIsImV4cCI6MTU0NzA3MDUwMiwiaWF0IjoxNTE1NTM0NTAyLCJqdGkiOiIxNDk3MzUyNC1kMzM2LTQ3NGYtODFkYS1hNmRjNzY5NDdjYmYifQ.third'
-        c.tru_codes_host = 'https://api.example.net'
-      end
-      sut = Trusona::TruCodeConfig.new
-      expect(sut.tru_code_url).to(
-        eq(
-          'https://api.example.net/?relying_party_id=0f0348f0-46d6-47c9-ba4d-2e7cd7f82e3e'
-        )
-      )
-    end
-  end
 end
