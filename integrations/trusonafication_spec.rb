@@ -6,7 +6,7 @@ require 'spec_helper'
 RSpec.describe 'Trusonafications' do
   before do
     Trusona.config do |c|
-      c.tru_codes_host = ENV['TRUCODES_HOST']
+      c.tru_codes_host = ENV['TRU_CODES_HOST']
       c.api_host       = ENV['TRUSONA_API_HOST']
       c.secret         = ENV['TRUSONA_SECRET']
       c.token          = ENV['TRUSONA_TOKEN']
@@ -15,7 +15,7 @@ RSpec.describe 'Trusonafications' do
     @parameters = {
       resource: 'integration test suite',
       action: 'verify',
-      user_identifier: 'claytonhauz@gmail.com'
+      email: ENV['INTEGRATION_TEST_EMAIL']
     }
 
     @timeout = 5
@@ -29,7 +29,7 @@ RSpec.describe 'Trusonafications' do
 
     it 'just works' do
       expect(@trusonafication.status).to eq(:in_progress)
-      expect(@trusonafication.user_identifier).to eq('claytonhauz@gmail.com')
+      expect(@trusonafication.email).to eq(ENV['INTEGRATION_TEST_EMAIL'])
       expect(@trusonafication.resource).to eq('integration test suite')
       expect(@trusonafication.action).to eq('verify')
       expect(@trusonafication.level).to eq(2)
@@ -49,12 +49,13 @@ RSpec.describe 'Trusonafications' do
   end
   describe 'creating a trusonafication for an unknown trusona user' do
     it 'as expected, does not work' do
-      @parameters[:user_identifier] = "#{Time.now.to_i}@example.com"
-      trusonafication = Trusona::Trusonafication.create(
-        params: @parameters, timeout: @timeout
-      )
+      @parameters[:email] = "#{Time.now.to_i}@example.com"
 
-      expect(trusonafication.trusona_id).to_not be
+      expect {
+        Trusona::Trusonafication.create(
+          params: @parameters, timeout: @timeout
+        )
+      }.to raise_error(Trusona::InvalidResourceError)
     end
   end
 end

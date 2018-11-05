@@ -101,7 +101,7 @@ module Trusona
   # using an instance of +Trusona::Configuration+.
   #
   #   Trusona.config do |c|
-  #     c.tru_codes_host = ENV['TRUCODES_HOST']
+  #     c.tru_codes_host = ENV['TRU_CODES_HOST']
   #     c.api_host       = ENV['TRUSONA_API_HOST']
   #     c.secret         = ENV['TRUSONA_SECRET']
   #     c.token          = ENV['TRUSONA_TOKEN']

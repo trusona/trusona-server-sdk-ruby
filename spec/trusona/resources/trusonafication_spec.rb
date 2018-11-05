@@ -17,7 +17,7 @@ RSpec.describe Trusona::Resources::Trusonafication do
       show_identity_document: false,
       status:                 'IN_PROGRESS',
       updated_at:             '2018-03-30T21:08:44.233Z',
-      user_identifier:        'claytonhauz@gmail.com',
+      user_identifier:        'user@example.com',
       device_identifier:      '16B52319-AD81-4AE8-AE40-14F4C3292947',
       trucode_id:             '2A99A895-A8A3-4C89-A087-06D6EBEE1E4F',
       trusona_id:             '123456789',

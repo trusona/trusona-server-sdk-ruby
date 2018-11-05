@@ -7,7 +7,7 @@ require 'tempfile'
 RSpec.describe 'TruCodes' do
   before do
     Trusona.config do |c|
-      c.tru_codes_host = ENV['TRUCODES_HOST']
+      c.tru_codes_host = ENV['TRU_CODES_HOST']
       c.api_host       = ENV['TRUSONA_API_HOST']
       c.secret         = ENV['TRUSONA_SECRET']
       c.token          = ENV['TRUSONA_TOKEN']
@@ -28,18 +28,12 @@ RSpec.describe 'TruCodes' do
 
       result = Trusona::TruCode.create(code)
 
-      expect(result.tru_code).to be
-      expect(result.signature).to be
       expect(result.relying_party_id).to be
-      expect(result.tru_code).to be
-      expect(result.tru_code.id).to be
-      expect(result.tru_code.payload).to be
-      expect(result.tru_code.image).to be
-      expect(result.tru_code.id).to be
-      expect(result.tru_code.reference_id).to eq(@reference_id)
+      expect(result.id).to be
+      expect(result.payload).to be
     end
 
-    describe 'and when you want to check the status of that TruCode' do
+    xdescribe 'and when you want to check the status of that TruCode' do
       before do
         @qr = Tempfile.new('tru_code')
         code = Trusona::Resources::TruCode.new(
