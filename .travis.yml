@@ -26,3 +26,4 @@ deploy:
   script: "./release-gem"
   on:
     tags: true
+    rvm: '2.5.1'
