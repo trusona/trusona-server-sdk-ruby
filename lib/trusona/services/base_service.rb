@@ -57,6 +57,7 @@ module Trusona
       # rubocop:disable Metrics/CyclomaticComplexity
       def handle(response, resource = {})
         @response = response
+
         raise if resource.nil?
         case response.code
         when 200..299

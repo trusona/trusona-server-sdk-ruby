@@ -6,14 +6,14 @@ require 'spec_helper'
 RSpec.describe 'Trusona User Accounts' do
   before do
     Trusona.config do |c|
-      c.tru_codes_host = ENV['TRUCODES_HOST']
+      c.tru_codes_host = ENV['TRU_CODES_HOST']
       c.api_host       = ENV['TRUSONA_API_HOST']
       c.secret         = ENV['TRUSONA_SECRET']
       c.token          = ENV['TRUSONA_TOKEN']
     end
 
     @account_lookup = { trusona_id: '167791378' }
-    @email_lookup   = { email: 'claytonhauz@gmail.com' }
+    @email_lookup   = { email: ENV['INTEGRATION_TEST_EMAIL'] }
   end
 
   describe 'retrieving a user account with their Trusona ID' do

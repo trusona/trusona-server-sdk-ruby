@@ -22,7 +22,7 @@ RSpec.describe 'Trusona User Identifiers' do
       end
     end
 
-    context 'when a valid identifier exists' do
+    xcontext 'when a valid identifier exists' do
       it 'should be successful' do
         res = Trusona::UserIdentifier.find_by(identifier: @identifier.identifier)
         expect(res.trusona_id).to eq @identifier.trusona_id
