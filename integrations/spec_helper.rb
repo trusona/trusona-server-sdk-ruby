@@ -21,3 +21,10 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+Trusona.config do |c|
+  c.tru_codes_host = ENV['TRUSONA_API_HOST']
+  c.api_host       = ENV['TRUSONA_API_HOST']
+  c.secret         = ENV['TRUSONA_SECRET']
+  c.token          = ENV['TRUSONA_TOKEN']
+end

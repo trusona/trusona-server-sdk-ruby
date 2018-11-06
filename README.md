@@ -262,6 +262,23 @@ continuous integration builds.
 
 Included in the `integrations` directory are a set of ever growing integration tests which rely on the Trusona config variables in your environment (try `.env`.)
 
+##### One time setup
+
+```bash
+cp .env.example .env
+```
+
+Edit .env:
+
+```txt
+TRUSONA_TOKEN=<A Server RP token that can send trusonafications to your email>
+TRUSONA_SECRET=<The Server RP secret>
+TRUSONA_API_HOST=https://api.staging.trusona.net
+INTEGRATION_TEST_EMAIL=<your UAT email>
+```
+
+##### Running the tests
+
 `bundle exec rspec integrations/`
 
 #### Code Coverage
