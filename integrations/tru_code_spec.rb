@@ -1,19 +1,10 @@
 # frozen_string_literal:true
 
-require 'spec_helper'
+require_relative 'spec_helper'
 require 'tempfile'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe 'TruCodes' do
-  before do
-    Trusona.config do |c|
-      c.tru_codes_host = ENV['TRU_CODES_HOST']
-      c.api_host       = ENV['TRUSONA_API_HOST']
-      c.secret         = ENV['TRUSONA_SECRET']
-      c.token          = ENV['TRUSONA_TOKEN']
-    end
-  end
-
   describe 'creating a TruCode to show on your website' do
     before do
       @reference_id = SecureRandom.uuid

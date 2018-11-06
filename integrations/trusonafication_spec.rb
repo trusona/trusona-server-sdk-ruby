@@ -1,17 +1,10 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require_relative 'spec_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe 'Trusonafications' do
   before do
-    Trusona.config do |c|
-      c.tru_codes_host = ENV['TRU_CODES_HOST']
-      c.api_host       = ENV['TRUSONA_API_HOST']
-      c.secret         = ENV['TRUSONA_SECRET']
-      c.token          = ENV['TRUSONA_TOKEN']
-    end
-
     @parameters = {
       resource: 'integration test suite',
       action: 'verify',
