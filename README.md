@@ -38,7 +38,6 @@ Configuring the Trusona gem is easy. We recommend using environment variables an
 
 ```ruby
 Trusona.config do |c|
-  c.api_host       = ENV['TRUSONA_API_HOST']
   c.secret         = ENV['TRUSONA_SECRET']
   c.token          = ENV['TRUSONA_TOKEN']
 end
@@ -219,3 +218,16 @@ You may wish to disable a user from having the ability to authenticate from any 
 ```
 
 The deactivated user can be reactivated at a later date by binding them to a new device in Trusona.
+
+
+### Using a specific Trusona region
+
+All users are provisioned in the default region. Unless otherwise noted you will not need to configure Trusona to use a specific region. If you have been provisioned in a specific region, you will need to point the SDK to use that region. This can be done by configuring the region endpoint as the `api_host`. For example:
+
+```ruby
+Trusona.config do |c|
+  c.api_host       = 'https://api.ap.trusona.net'
+  c.secret         = ENV['TRUSONA_SECRET']
+  c.token          = ENV['TRUSONA_TOKEN']
+end
+```
