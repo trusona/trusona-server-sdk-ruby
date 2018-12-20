@@ -8,17 +8,6 @@ RSpec.describe Trusona do
   end
 
   describe 'configuring' do
-    after(:each) do
-      Trusona.config do |c|
-        c.secret   = nil
-        c.token    = nil
-      end
-    end
-
-    it 'should have a default api_host' do
-      expect(Trusona.config.api_host).to eq 'api.trusona.net'
-    end
-
     it 'should have a configurable api secret' do
       Trusona.config do |c|
         c.secret = 'my secret'
@@ -52,9 +41,11 @@ RSpec.describe Trusona do
     end
 
     it 'should have a default configuration' do
+      Trusona.config { }
+
       expect(Trusona.config.secret).to be_nil
       expect(Trusona.config.token).to be_nil
-      expect(Trusona.config.api_host).to_not be_nil
+      expect(Trusona.config.api_host).to eq('api.trusona.net')
     end
   end
 end
