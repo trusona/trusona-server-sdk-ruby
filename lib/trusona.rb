@@ -127,6 +127,10 @@ module Trusona
     attr_accessor :token, :secret
     attr_reader :api_host
 
+    def initialize()
+      @api_host = 'api.trusona.net'
+    end
+
     ##
     # sets the API host by first ensuring the proper format
     # @param host [String] The full URL of the Trusona API
