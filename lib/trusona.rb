@@ -138,20 +138,7 @@ module Trusona
     # sets the API host by first ensuring the proper format
     # @param host [String] The full URL of the Trusona API
     def api_host=(host)
-      @api_host = parse_host(host)
-    end
-
-    private
-
-    def parse_host(maybe_host)
-      parsed = URI('')
-      begin
-        parsed = URI(maybe_host).host
-      rescue StandardError
-        parsed = URI('')
-      end
-
-      parsed
+      @api_host = URI(host).host || host
     end
   end
 end

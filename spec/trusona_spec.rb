@@ -26,7 +26,7 @@ RSpec.describe Trusona do
 
     it 'should have a configurable api host' do
       Trusona.config do |c|
-        c.api_host  = 'https://example.com'
+        c.api_host  = 'example.com'
       end
 
       expect(Trusona.config.api_host).to eq 'example.com'
