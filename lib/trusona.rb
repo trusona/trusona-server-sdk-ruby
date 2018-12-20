@@ -101,7 +101,6 @@ module Trusona
   # using an instance of +Trusona::Configuration+.
   #
   #   Trusona.config do |c|
-  #     c.tru_codes_host = ENV['TRU_CODES_HOST']
   #     c.api_host       = ENV['TRUSONA_API_HOST']
   #     c.secret         = ENV['TRUSONA_SECRET']
   #     c.token          = ENV['TRUSONA_TOKEN']
@@ -124,26 +123,15 @@ module Trusona
   #
   # @attr_reader api_host [String] The full URL of the Trusona API
   #                                (e.g. +https://api.trusona.net+)
-  #
-  # @attr_reader tru_codes_host [String] The full URL of the host responsible
-  #                                    for managing TruCode tru_codes
-  #                                    (e.g. +https://tru_codes.trusona.net+)
   class Configuration
     attr_accessor :token, :secret
-    attr_reader :api_host, :tru_codes_host
+    attr_reader :api_host
 
     ##
     # sets the API host by first ensuring the proper format
     # @param host [String] The full URL of the Trusona API
     def api_host=(host)
       @api_host = parse_host(host)
-    end
-
-    ##
-    # sets the TruCodes host by first ensuring the proper format
-    # @param host [String] The full URL of the TruCodes API
-    def tru_codes_host=(host)
-      @tru_codes_host = parse_host(host)
     end
 
     private
