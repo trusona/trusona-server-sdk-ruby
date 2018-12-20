@@ -107,9 +107,12 @@ module Trusona
   #   end
   #
   def self.config
-    yield(@config ||= Configuration.new) if block_given?
+    if block_given?
+      @config = Configuration.new
+      yield(@config)
+    end
 
-    @config ||= Configuration.new
+    @config
   end
 
   ##
