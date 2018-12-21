@@ -7,7 +7,6 @@ rvm:
 - 2.5.1
 before_install:
   - openssl aes-256-cbc -K $encrypted_b73e363d372e_key -iv $encrypted_b73e363d372e_iv -in trusona.key.pem.enc -out trusona.key.pem -d
-  - gem install bundler -v 1.15.1
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
@@ -18,12 +17,10 @@ script:
   - gem build trusona.gemspec
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-before_deploy:
-- gem install bundler -v 1.15.1
 deploy:
+  provider: rubygems
+  api_key: $RUBYGEMS_API_KEY
   skip_cleanup: true
-  provider: script
-  script: "./release-gem"
   on:
     tags: true
     rvm: '2.5.1'
