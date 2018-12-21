@@ -24,4 +24,4 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    rvm: '2.5.1'
+    rvm: '2.4.3'
