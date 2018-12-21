@@ -20,6 +20,7 @@ after_script:
 deploy:
   provider: rubygems
   api_key: $RUBYGEMS_API_KEY
+  gemspec: trusona.gemspec
   skip_cleanup: true
   on:
     tags: true
