@@ -17,6 +17,11 @@ RSpec.describe Trusona::Services::TruCodesService do
     @response = double(code: 201)
   end
 
+  it 'should use the Trusona config api_host by default' do
+    expect(Trusona::Api::HTTPClient).to receive(:new).with('testing.local')
+    Trusona::Services::TruCodesService.new()
+  end
+
   it 'should be configurable with a custom client' do
     Trusona::Services::TruCodesService.new(client: double)
   end

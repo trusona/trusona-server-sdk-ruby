@@ -6,7 +6,7 @@ module Trusona
     ## A service for interacting with TruCode TruCodes
     class TruCodesService < BaseService
       def initialize(
-        client: Trusona::Api::HTTPClient.new(Trusona.config.tru_codes_host),
+        client: Trusona::Api::HTTPClient.new(Trusona.config.api_host),
         mapper: Trusona::Mappers::TruCodeMapper.new
       )
         @client = client

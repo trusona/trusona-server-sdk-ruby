@@ -6,7 +6,6 @@ RSpec.describe Trusona::Resources::TruCode do
   before do
     Trusona.config do |c|
       c.token = 'first.eyJzdWIiOiIwZjAzNDhmMC00NmQ2LTQ3YzktYmE0ZC0yZTdjZDdmODJlM2UiLCJuYmYiOjE1MTU1MzQ1MDIsImF0aCI6IlJPTEVfVFJVU1RFRF9SUCIsImlzcyI6InRzOjlmOGY1OTIwLWFjNGEtNDE1Zi1hODEwLWIzN2Y5Njk5M2JkZiIsImV4cCI6MTU0NzA3MDUwMiwiaWF0IjoxNTE1NTM0NTAyLCJqdGkiOiIxNDk3MzUyNC1kMzM2LTQ3NGYtODFkYS1hNmRjNzY5NDdjYmYifQ.third'
-      c.tru_codes_host = 'https://api.example.net'
     end
 
     @valid_params = {
