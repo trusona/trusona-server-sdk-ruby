@@ -32,3 +32,9 @@ jobs: # a collection of steps
       - run:
           name: Rubocop
           command: bundle exec rubocop lib/**/*.rb -F
+
+# Save test results for timing analysis
+      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: test_results
+      # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
+
