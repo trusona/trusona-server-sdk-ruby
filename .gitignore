@@ -12,6 +12,7 @@
 
 # rspec failure tracking
 .rspec_status
+test_results
 
 # dotenv
 .env
