@@ -46,6 +46,7 @@ require 'trusona/services/device_user_bindings_service'
 require 'trusona/services/identity_documents_service'
 require 'trusona/services/devices_service'
 require 'trusona/services/users_service'
+require 'trusona/services/paired_tru_code_service'
 
 require 'trusona/mappers/base_mapper'
 require 'trusona/mappers/tru_code_mapper'
