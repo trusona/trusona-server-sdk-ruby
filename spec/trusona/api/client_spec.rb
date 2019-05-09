@@ -4,13 +4,19 @@ require 'spec_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe Trusona::Api::HTTPClient do
-  before do
-    Trusona.config do |c|
-      c.api_host = 'example.com'
+  describe 'Trying to use the client with no config' do
+    it 'should raise a helpful error' do
+      expect {
+        Trusona::Api::HTTPClient.new
+      }.to raise_error Trusona::ConfigurationError
     end
   end
+
   describe 'GETting' do
     before do
+      Trusona.config do |c|
+        c.api_host = 'example.com'
+      end
       @path = '/api/v1/widgets'
       @params = { resource: { name: 'w-1000' } }
     end

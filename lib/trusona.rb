@@ -115,6 +115,7 @@ module Trusona
       yield(@config)
     end
 
+    raise Trusona::ConfigurationError unless @config
     @config
   end
 
