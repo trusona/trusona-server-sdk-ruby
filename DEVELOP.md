@@ -54,6 +54,8 @@ TRUSONA_API_HOST=https://api.staging.trusona.net
 INTEGRATION_TEST_EMAIL=<your UAT email>
 ```
 
+The token needs to belong to relying party id `5dfc5568-fbd3-4c1c-80f6-d0cf3d9edc82` to work with the existing tests.
+
 ##### Running the tests
 
 `bundle exec rspec integrations/`
