@@ -11,7 +11,7 @@ Easily interact with the Trusona REST API.
 ## Requirements
 The Trusona SDK requires Ruby version 2.4.0 or higher.
 
-## Examples
+## Usage
 
 * [Installation](#installation)
 * [Configuration](#configuration)
@@ -19,6 +19,7 @@ The Trusona SDK requires Ruby version 2.4.0 or higher.
 * [Trusonafications](#trusonafications)
 * [Devices](#devices)
 * [Users](#users)
+* [TruCodes](#trucodes)
 
 ### Installation
 
@@ -231,3 +232,14 @@ Trusona.config do |c|
   c.token          = ENV['TRUSONA_TOKEN']
 end
 ```
+
+### TruCodes
+
+After a user has scanned a TruCode, it's possible to acquire that user's information by getting the 
+scanned TruCode from the server. The code sample below shows how to do that:
+
+```ruby
+tru_code = Trusona::PairedTruCode.find('DB0C0B0B-0DC9-4118-BF73-68AB864E67FF')
+user_id = tru_code.identifier
+```
+
