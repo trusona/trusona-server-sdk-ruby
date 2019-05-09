@@ -59,6 +59,7 @@ require 'trusona/mappers/device_user_binding_mapper'
 require 'trusona/mappers/identity_document_mapper'
 require 'trusona/mappers/device_mapper'
 require 'trusona/mappers/user_mapper'
+require 'trusona/mappers/paired_tru_code_mapper'
 
 require 'trusona/resources/validators'
 require 'trusona/resources/base_resource'
@@ -71,6 +72,7 @@ require 'trusona/resources/device_user_binding_activation'
 require 'trusona/resources/identity_document'
 require 'trusona/resources/device'
 require 'trusona/resources/user'
+require 'trusona/resources/paired_tru_code'
 
 # Trusona
 module Trusona
