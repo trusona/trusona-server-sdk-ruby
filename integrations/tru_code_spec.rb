@@ -23,43 +23,6 @@ RSpec.describe 'TruCodes' do
       expect(result.id).to be
       expect(result.payload).to be
     end
-
-    xdescribe 'and when you want to check the status of that TruCode' do
-      before do
-        @qr = Tempfile.new('tru_code')
-        code = Trusona::Resources::TruCode.new(
-          reference_id: @reference_id,
-          action: 'verify',
-          resource: 'integration-test',
-          level: 1
-        )
-
-        @created = Trusona::TruCode.create(code)
-      end
-
-      after do
-        @qr.close
-        @qr.unlink
-      end
-
-      it 'can be checked by using the tru code resource' do
-        expect { Trusona::TruCode.status(@created) }.to(
-          raise_error(Trusona::ResourceNotFoundError)
-        )
-      end
-
-      it 'can be checked by using the tru_code resource' do
-        expect { Trusona::TruCode.status(@created.tru_code) }.to(
-          raise_error(Trusona::ResourceNotFoundError)
-        )
-      end
-
-      it 'can be checked by using the tru_code id' do
-        expect { Trusona::TruCode.status(tru_code_id: @created.tru_code.id) }.to(
-          raise_error(Trusona::ResourceNotFoundError)
-        )
-      end
-    end
   end
 end
 # rubocop:enable Metrics/BlockLength

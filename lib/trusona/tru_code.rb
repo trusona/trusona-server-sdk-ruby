@@ -20,17 +20,6 @@ module Trusona
       Trusona::Workers::TruCodeFinder.new.find(id)
     end
 
-    ##
-    # Finds a TruCode using its ID
-    #
-    # @param id [String] The id of the TruCode we're looking for
-    # @return [Trusona::Resources::TruCode] The found TruCode
-    # @raise (see .find)
-    #
-    def self.status(id)
-      Trusona::Workers::TruCodeStatus.new.status(id)
-    end
-
     def self.create(code)
       Trusona::Workers::TruCodeCreator.new.create(code)
     end

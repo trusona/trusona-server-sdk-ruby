@@ -16,6 +16,7 @@ require 'trusona/device_user_binding'
 require 'trusona/identity_document'
 require 'trusona/device'
 require 'trusona/user'
+require 'trusona/paired_tru_code'
 
 require 'trusona/api/signed_request'
 require 'trusona/api/verified_response'
@@ -34,6 +35,7 @@ require 'trusona/workers/trusonafication_finder'
 require 'trusona/workers/identity_document_finder'
 require 'trusona/workers/device_finder'
 require 'trusona/workers/user_deactivator'
+require 'trusona/workers/paired_tru_code_finder'
 
 require 'trusona/services/base_service'
 require 'trusona/services/user_accounts_service'
@@ -46,6 +48,7 @@ require 'trusona/services/device_user_bindings_service'
 require 'trusona/services/identity_documents_service'
 require 'trusona/services/devices_service'
 require 'trusona/services/users_service'
+require 'trusona/services/paired_tru_code_service'
 
 require 'trusona/mappers/base_mapper'
 require 'trusona/mappers/tru_code_mapper'
@@ -58,6 +61,7 @@ require 'trusona/mappers/device_user_binding_mapper'
 require 'trusona/mappers/identity_document_mapper'
 require 'trusona/mappers/device_mapper'
 require 'trusona/mappers/user_mapper'
+require 'trusona/mappers/paired_tru_code_mapper'
 
 require 'trusona/resources/validators'
 require 'trusona/resources/base_resource'
@@ -70,6 +74,7 @@ require 'trusona/resources/device_user_binding_activation'
 require 'trusona/resources/identity_document'
 require 'trusona/resources/device'
 require 'trusona/resources/user'
+require 'trusona/resources/paired_tru_code'
 
 # Trusona
 module Trusona
@@ -112,6 +117,7 @@ module Trusona
       yield(@config)
     end
 
+    raise Trusona::ConfigurationError unless @config
     @config
   end
 
