@@ -3,6 +3,10 @@
 require_relative 'spec_helper'
 
 RSpec.describe 'Identity Documents' do
+  before do
+    WebMock.allow_net_connect!
+  end
+
   describe 'finding all documents for a user identifier' do
     it 'should work' do
       result = Trusona::IdentityDocument.all(user_identifier: SecureRandom.uuid)
