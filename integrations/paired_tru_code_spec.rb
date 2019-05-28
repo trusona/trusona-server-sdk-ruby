@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'spec_helper'
-require 'webmock/rspec' # requiring this here instead of in the spec helper, because other tests use live http connections
 
 RSpec.describe Trusona::PairedTruCode do
   before do
@@ -23,7 +22,7 @@ EOF
   context 'a trucode exists and is paired' do
     it 'loads the trucode' do
       paired_tru_code = Trusona::PairedTruCode.find('abc123')
-      
+
       expect(paired_tru_code).not_to be_nil
       expect(paired_tru_code.id).to eq 'myid'
       expect(paired_tru_code.identifier).to eq 'myidentifier'
