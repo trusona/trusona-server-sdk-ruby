@@ -281,6 +281,21 @@ RSpec.describe Trusona::Resources::Trusonafication do
     end
   end
 
+  describe 'expose optional paramters of the resource' do
+    it 'should return the custom_fields if provided' do
+      @sut = Trusona::Resources::Trusonafication.new(@valid_params.merge(custom_fields: {african: 'tiger', taco: 'bell'}))
+
+      expect(@sut.custom_fields.length).to be 2
+      expect(@sut.custom_fields[:african]).to be 'tiger'
+      expect(@sut.custom_fields[:taco]).to be 'bell'
+    end
+
+    it 'should not return the custom_fields if not provided' do
+      @sut = Trusona::Resources::Trusonafication.new(@valid_params)
+      expect(@sut.custom_fields).to be_nil
+    end
+  end
+
   describe 'exposing parameters of the resource' do
     before do
       @sut = Trusona::Resources::Trusonafication.new(@valid_params)

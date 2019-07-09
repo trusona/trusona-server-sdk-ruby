@@ -55,6 +55,18 @@ RSpec.describe Trusona::Trusonafication do
       ).and_return(double(create: double))
     end
 
+    it 'allows for optional custom_fields' do
+      expect do
+        Trusona::Trusonafication.create(params: @valid_params.merge(
+          custom_fields: {african: 'tiger', taco: 'bell'}
+        )
+      )end.to_not(raise_error)
+
+      expect do
+        Trusona::Trusonafication.create(params: @valid_params
+      )end.to_not(raise_error)
+    end
+
     it 'requires a way to identify the user' do
       expect { Trusona::Trusonafication.create(params: {}) }.to(
         raise_error(ArgumentError)
