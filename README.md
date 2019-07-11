@@ -133,7 +133,7 @@ Creating a Trusonafication with an email address is similar to the other use cas
     action: 'login',
     resource: 'Acme Bank',
     device_identifier: 'Vdza6-JQMfAJePj2H69oMn1YTyXTu73IiYt9oBa3kj',
-    custom_fields: { african: 'tiger', exist: 99 }
+    custom_fields: { greeting: 'hello!', last_login: false }
   })
 ```
 
@@ -170,6 +170,7 @@ Note that the custom fields are not used in the case that the Trusonafication is
 | User Presence     | `user_presence`     |    N     | Should the user be required to demonstrate presence (e.g. via Biometric) when accepting this Trusonafication? Defaults to `true`. |
 | Prompt            | `prompt`            |    N     | Should the user be prompted to Accept or Reject this Trusonafication? Defaults to `true`.                                         |
 | Expiration        | `expires_at`        |    N     | The ISO-8601 UTC timestamp of the Trusonafication's expiration. Defaults to 90 seconds from creation.                             |
+| Custom Fields     | `custom_fields`     |    N     | Arbitrary key-value data fields made available to the Trusonafication. Amount of data in the hash is limited to 1MB               |
 
 [^1]: You must provide at least one field that would allow Trusona to determine which user to authenticate. The identifier fields are `device_identifier`, `user_identifier`, and `trucode_id`.
 
