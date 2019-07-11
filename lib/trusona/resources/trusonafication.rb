@@ -11,7 +11,7 @@ module Trusona
       attr_accessor :device_identifier, :user_identifier, :trucode_id,
                     :resource, :action, :level, :id, :email,
                     :accepted_level, :trusona_id, :expires_at,
-                    :user_presence, :prompt
+                    :user_presence, :prompt, :custom_fields
 
       # rubocop:disable Metrics/AbcSize
       # rubocop:disable Metrics/MethodLength
@@ -31,6 +31,7 @@ module Trusona
         self.trusona_id        = @params[:trusona_id]
         self.prompt            = defaulting_to(true, @params[:prompt])
         self.user_presence     = defaulting_to(true, @params[:user_presence])
+        self.custom_fields     = @params[:custom_fields]
 
         @status = @params[:status]
       end
@@ -55,6 +56,7 @@ module Trusona
              status: @status,
              prompt: prompt,
              user_presence: user_presence,
+             custom_fields: custom_fields,
              expires_at: expires_at&.iso8601)
       end
       # rubocop:enable Metrics/MethodLength

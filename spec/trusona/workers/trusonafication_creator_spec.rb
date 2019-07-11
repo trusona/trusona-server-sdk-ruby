@@ -51,6 +51,16 @@ RSpec.describe Trusona::Workers::TrusonaficationCreator do
       @sut.create(params: @valid_params)
     end
 
+    it 'builds a Trusonafication resource with the provided parameters including custom fields' do
+      data = @valid_params.merge(custom_field: {african:'tiger', taco:'bell'})
+
+      expect(Trusona::Resources::Trusonafication).to(
+        receive(:new)
+      ).with(data)
+
+      @sut.create(params: data)
+    end
+
     it 'tells the service to create the resource' do
       spy = double(Trusona::Resources::Trusonafication)
       allow(Trusona::Resources::Trusonafication).to(

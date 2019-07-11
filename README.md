@@ -122,12 +122,31 @@ In the above example, the addition of `user_presence: false` and `prompt: false`
     email: 'user@domain.com'
    })
 ```
-In some cases you may be able to send a Trusonafication to a user
-by specifying their email address. This is the case if one of the following is true:
+In some cases you may be able to send a Trusonafication to a user by specifying their email address. This is the case if one of the following is true:
 - You have verified ownership of a domain through the Trusona Developer's site
 - You have an agreement with Trusona allowing you to send Trusonafications to any email address.
-Creating a Trusonafication with an email address is similar to the other
-use cases, except you use the `email` parameter rather than `user_identifier` or `device_identifier`.
+Creating a Trusonafication with an email address is similar to the other use cases, except you use the `email` parameter rather than `user_identifier` or `device_identifier`.
+
+#### Adding custom fields to a Trusonafication
+```ruby
+  Trusona::ExecutiveTrusonafication.create(params: {
+    action: 'login',
+    resource: 'Acme Bank',
+    device_identifier: 'Vdza6-JQMfAJePj2H69oMn1YTyXTu73IiYt9oBa3kj',
+    custom_fields: { greeting: 'hello!', last_login: false }
+  })
+```
+
+If you are using the mobile SDK to build a custom app that integrates with Trusona, you have the option of including additional data on the Trusonafication which the app can use to affect its behavior.
+
+For example, you may want to include additional context on the Trusonafication prompt.
+
+You can add these custom fields by including a `custom_fields` hash as shown above.
+
+The custom fields will then be available in the Trusonafication received by the SDK.
+
+Note that the custom fields are not used in the case that the Trusonafication is being handled by the Trusona app.
+
 
 #### An Executive level Trusonafication
 
@@ -151,6 +170,7 @@ use cases, except you use the `email` parameter rather than `user_identifier` or
 | User Presence     | `user_presence`     |    N     | Should the user be required to demonstrate presence (e.g. via Biometric) when accepting this Trusonafication? Defaults to `true`. |
 | Prompt            | `prompt`            |    N     | Should the user be prompted to Accept or Reject this Trusonafication? Defaults to `true`.                                         |
 | Expiration        | `expires_at`        |    N     | The ISO-8601 UTC timestamp of the Trusonafication's expiration. Defaults to 90 seconds from creation.                             |
+| Custom Fields     | `custom_fields`     |    N     | Arbitrary key-value data fields made available to the Trusonafication. Amount of data in the hash is limited to 1MB               |
 
 [^1]: You must provide at least one field that would allow Trusona to determine which user to authenticate. The identifier fields are `device_identifier`, `user_identifier`, and `trucode_id`.
 

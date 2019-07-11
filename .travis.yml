@@ -1,13 +1,12 @@
 sudo: false
 language: ruby
 cache:
-- bundler
+  - bundler
 rvm:
-- 2.4.3
-- 2.5.1
-before_install:
-  - openssl aes-256-cbc -K $encrypted_b73e363d372e_key -iv $encrypted_b73e363d372e_iv -in trusona.key.pem.enc -out trusona.key.pem -d
+  - 2.4.3
+  - 2.5.1
 before_script:
+  - openssl aes-256-cbc -K $encrypted_2ddff5084a28_key -iv $encrypted_2ddff5084a28_iv -in trusona.key.pem.enc -out trusona.key.pem -d
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
@@ -26,3 +25,9 @@ deploy:
   on:
     tags: true
     rvm: '2.4.3'
+notifications:
+  slack:
+    on_success: always
+    on_failure: always
+    rooms:
+      - secure: "qRApZOlTg30kMRnRkaF2FrEjsu41iCYWyKH+jBDrw9/27fDxSooSFTrd9zoukyZOsh4j7IcXhM63ZsoOP5eYNc49PsPJlDvSWo3pwp3sQwFpXbbci1axEQeqWr3gwpQ9QiGNbKGelhr6zgMK5Qa41GrgpsAR/7R21SuqDyDczzPgRQQxxbAFUI1hHyDvs4H+/CZdno1y8NKbLqSzwNxnZQFAZlXvrnlTWNL4Afr9MqarTlxvg62FKhBmpExThMhmvh0egcfrH1SEkEn9WECqReO6m+evpK/uF5fFRiBPnOEj+aJswWt0tUoSSATNCOoKSQt6aOpGe6RLpiaUljCHK/0pLAsSXroCiEQ6DSRwEkiGOzMFkrefPIvHQqWMTlJKsO+oJOY4utnRnX+ykg0nQ1+6HZPoUX+E+chlYIIomQ0GMtn7LuT22kXlnuYgv64tc7/wtRlIoQ0oS+Hj0sOz5u3T78eiGn+hXvCaRsfMjq9InP01lFS/3X4mK4fI89L9cTKN+8Kvk072boibGApyusJBzt5SS9LFYS44B6d63pFGlpfZUrSBbwr44jfwCIyWPKuf+7SLzJKzeduRX/2/PIAweMm/yUz6ERAEcw6fYUDziMljhWKZh8ME4B1VAWpUAGR9/Gq4iYCLGRiJ2ajG4CE2Sf7+9W74V6fe1RiAodo="

@@ -58,6 +58,9 @@ module Trusona
     # @param timeout [Int] (30) The max amount of time, in seconds, to wait
     #  for a response from the Trusona API when polling for a Trusonafication
     #  result
+    # @option params [Hash] :custom_fields Optional data to be associated with
+    #  this Trusonafication and can be used to constomize any UX elements. Total
+    #  size of data is limited to 1MB.
     # @yield [Trusona::Resources::Trusonafication] Yields the completed
     #  Trusonafication to the block
     # @raise [Trusona::InvalidResourceError] if the resource is not +valid?+
