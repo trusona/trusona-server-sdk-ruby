@@ -40,10 +40,8 @@ RSpec.describe 'Trusonafications' do
       end
     end
   end
-  describe 'creating a trusonafication for an unknown trusona user' do
+  describe 'creating a trusonafication without a level' do
     it 'as expected, does not work' do
-      @parameters[:email] = "#{Time.now.to_i}@example.com"
-
       expect {
         Trusona::Trusonafication.create(
           params: @parameters, timeout: @timeout
