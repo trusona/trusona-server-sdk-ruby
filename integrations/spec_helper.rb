@@ -7,9 +7,11 @@ SimpleCov.start do
 end
 
 require 'bundler/setup'
+require 'rspec/wait'
 require 'trusona'
 require 'securerandom'
 require 'webmock/rspec'
+require_relative 'buster'
 
 WebMock.allow_net_connect!
 

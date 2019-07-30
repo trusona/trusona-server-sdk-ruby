@@ -12,6 +12,8 @@ RSpec.describe 'Trusonafications' do
     }
 
     @timeout = 5
+
+    @buster = Buster.new
   end
   describe 'creating a trusonafication for a known trusona user' do
     before do
@@ -47,6 +49,21 @@ RSpec.describe 'Trusonafications' do
           params: @parameters, timeout: @timeout
         )
       }.to raise_error(Trusona::InvalidResourceError)
+    end
+  end
+  describe 'creating a trusonafication with a callback url' do
+    it 'should POST to the URL when the trusonafication is completed' do
+      callback_id = SecureRandom.uuid
+
+      @parameters[:callback_url] = @buster.callback_url(callback_id)
+      @parameters[:expires_at] = DateTime.now + (1 / (24 * 60 * 60)) # one second
+
+      Trusona::EssentialTrusonafication.create(params: @parameters, timeout: @timeout)
+
+      wait_for do
+        callback_result = @buster.callback_result(callback_id)
+        callback_result.code
+      end.to eq(200)
     end
   end
 end
