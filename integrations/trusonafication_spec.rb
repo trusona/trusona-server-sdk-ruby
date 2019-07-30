@@ -56,7 +56,7 @@ RSpec.describe 'Trusonafications' do
       callback_id = SecureRandom.uuid
 
       @parameters[:callback_url] = @buster.callback_url(callback_id)
-      @parameters[:expires_at] = DateTime.now + (1 / (24 * 60 * 60)) # one second
+      @parameters[:expires_at] = 1.second.from_now
 
       Trusona::EssentialTrusonafication.create(params: @parameters, timeout: @timeout)
 

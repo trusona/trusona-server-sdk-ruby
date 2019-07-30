@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata['yard.run'] = 'yri' # use "yard" to build full HTML docs.
 
+  spec.add_development_dependency 'activesupport'
   spec.add_development_dependency 'bump', '~> 0.5'
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'dotenv', '~> 2.2'
