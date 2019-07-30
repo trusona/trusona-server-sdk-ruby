@@ -7,26 +7,27 @@ RSpec.describe Trusona::Resources::Trusonafication do
   before do
     @valid_params = {
       action:                 'verify',
+      callback_url:           'https://call.me/back',
       created_at:             '2018-03-30T21:08:44.233Z',
       desired_level:          2,
+      device_identifier:      '16B52319-AD81-4AE8-AE40-14F4C3292947',
+      email:                  'african-tiger@jones.taco',
       expires_at:             '2018-03-30T21:10:44.184Z',
       id:                     'c52e1b3c-caf2-4361-8ec4-141964eb548e',
+      level:                  2,
       prompt:                 true,
       relying_party:          'The Human Fund, Inc.',
       resource:               'integration test suite',
+      result: {
+        accepted_level:       2
+      },
       show_identity_document: false,
       status:                 'IN_PROGRESS',
-      updated_at:             '2018-03-30T21:08:44.233Z',
-      user_identifier:        'user@example.com',
-      device_identifier:      '16B52319-AD81-4AE8-AE40-14F4C3292947',
       trucode_id:             '2A99A895-A8A3-4C89-A087-06D6EBEE1E4F',
       trusona_id:             '123456789',
-      email:                  'african-tiger@jones.taco',
+      updated_at:             '2018-03-30T21:08:44.233Z',
+      user_identifier:        'user@example.com',
       user_presence:          true,
-      level:                  2,
-      result: {
-        accepted_level: 2
-      }
     }
   end
 
@@ -279,6 +280,10 @@ RSpec.describe Trusona::Resources::Trusonafication do
       @json = Trusona::Resources::Trusonafication.new(@valid_params.merge(expires_at: nil)).to_json
       expect(JSON.parse(@json)['expires_at']).to eq(nil)
     end
+
+    it 'should include the callback URL' do
+      expect(JSON.parse(@json)['callback_url']).to eq(@valid_params[:callback_url])
+    end
   end
 
   describe 'expose optional paramters of the resource' do
@@ -300,6 +305,7 @@ RSpec.describe Trusona::Resources::Trusonafication do
     before do
       @sut = Trusona::Resources::Trusonafication.new(@valid_params)
     end
+
     it 'should return the properties of the resource' do
       expect(@sut.device_identifier).to eq(@valid_params[:device_identifier])
       expect(@sut.user_identifier).to eq(@valid_params[:user_identifier])
@@ -349,6 +355,10 @@ RSpec.describe Trusona::Resources::Trusonafication do
 
     it 'should have an expiration time' do
       expect(@sut.expires_at).to_not be_nil
+    end
+
+    it 'should have a callback url' do
+      expect(@sut.callback_url).to eq(@valid_params[:callback_url])
     end
   end
 
