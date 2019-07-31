@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
 
   spec.metadata['yard.run'] = 'yri' # use "yard" to build full HTML docs.
 
+  spec.add_development_dependency 'activesupport', '~> 5.2'
   spec.add_development_dependency 'bump', '~> 0.5'
-  spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'dotenv', '~> 2.2'
   spec.add_development_dependency 'guard', '~> 2.14'
   spec.add_development_dependency 'guard-rspec', '~> 4.7'
@@ -37,8 +37,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-yard', '~> 2.2'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'rspec-wait', '~> 0.0'
   spec.add_development_dependency 'rubocop', '~> 0.49'
   spec.add_development_dependency 'simplecov', '~> 0.14'
   spec.add_development_dependency 'yard', '~> 0.9'
-  spec.add_development_dependency 'webmock'
+  spec.add_development_dependency 'webmock', '~> 3.5'
 end
