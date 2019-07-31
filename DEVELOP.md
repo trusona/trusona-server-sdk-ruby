@@ -65,6 +65,17 @@ The token needs to belong to relying party id `5dfc5568-fbd3-4c1c-80f6-d0cf3d9ed
 Code coverage is calculated used `SimpleCov` and can be found in the `coverage`
 directory after running the tests
 
+#### The console
+There's a little console command you can use to test the SDK in `bin/console`. Just set the following environment variables in `.env`:
+
+- `TRUSONA_API_HOST`
+- `TRUSONA_SECRET`
+- `TRUSONA_TOKEN`
+
+Then run
+
+`bundle exec bin/console`
+
 ### Deployment
 
 To deploy a new version of the gem to Artifactory, use `bump` to bump the
