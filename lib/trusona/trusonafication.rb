@@ -58,14 +58,12 @@ module Trusona
     # @option params [Hash] :custom_fields Optional data to be associated with
     #  this Trusonafication and can be used to constomize any UX elements. Total
     #  size of data is limited to 1MB.
-    # @option params [String] :callback_url An HTTPS URL to call when the
-    #  trusonafication has been completed (accepted, rejected, or expired). The
-    #  request will be a POST and the body will be the same JSON format as
-    #  sending a GET request to /api/v2/trusonafications/{id}.
+    # @option params [String] :callback_url A HTTPS URL to POST to call when the
+    #  trusonafication has been completed (accepted, rejected, or expired).
     #
     #  NOTE: The URL should include a randomized segment so it cannot be guessed
-    #  and abused by third-parties (i.e
-    #  https://your.domain.com/completed_authentications/f8abe61d-4e51-493f-97b1-464c157624f2).
+    #  and abused by third-parties e.g. https://your.domain.com/completed_authentications/f8abe61d-4e51-493f-97b1-464c157624f2.
+    #
     # @param timeout [Int] (30) The max amount of time, in seconds, to wait
     #  for a response from the Trusona API when polling for a Trusonafication
     #  result
