@@ -16,7 +16,7 @@ The Trusona SDK requires Ruby version 2.4.0 or higher.
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [Device and User Bindings](#device-and-user-bindings)
-* [Trusonafications](#trusonafications)
+* [Creating Trusonafications](#creating-trusonafications)
 * [Devices](#devices)
 * [Users](#users)
 * [TruCodes](#trucodes)
