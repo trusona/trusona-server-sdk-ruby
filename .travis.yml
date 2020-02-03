@@ -14,7 +14,7 @@ before_script:
 script:
   - bundle exec rspec -f p
   - bundle exec rubocop lib -F
-  - gem build trusona.gemspec
+  - echo | bundle exec gem build trusona.gemspec
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 deploy:
