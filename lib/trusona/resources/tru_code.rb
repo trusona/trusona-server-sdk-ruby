@@ -19,7 +19,7 @@ module Trusona
         raise ArgumentError unless validate
       end
 
-      def to_json
+      def to_json(*_args)
         JSON(to_h)
       end
 
@@ -35,6 +35,7 @@ module Trusona
 
       def validate
         return false unless present?(@relying_party_id)
+
         true
       end
     end

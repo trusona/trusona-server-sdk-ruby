@@ -3,14 +3,14 @@
 module Trusona
   module Workers
     #
-    ## Finds Trusonafications
-    class TrusonaficationFinder
+    ## Cancel a Trusonafication
+    class TrusonaficationCanceler
       def initialize(service: nil)
         @service = service || Trusona::Services::TrusonaficationService.new
       end
 
-      def find(trusonafication_id)
-        if trusonafication_id.nil? || trusonafication_id.empty?
+      def cancel(trusonafication_id)
+        if trusonafication_id.nil? || trusonafication_id.strip.empty?
           raise(
             Trusona::InvalidResourceError,
             'Trusonafication Id cannot be empty or nil'
@@ -20,7 +20,7 @@ module Trusona
         resource = Trusona::Resources::Trusonafication.new(
           id: trusonafication_id
         )
-        @service.get(resource)
+        @service.delete(resource)
       end
     end
   end

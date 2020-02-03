@@ -38,12 +38,12 @@ module Trusona
         @emails     = parse_emails(params_with_symbol_keys[:emails])
         @max_level  = parse_max_level(params_with_symbol_keys[:metadata])
 
-        @params     = params_with_symbol_keys
+        @params = params_with_symbol_keys
       end
       # rubocop:enable Metrics/MethodLength
       # rubocop:enable Metrics/AbcSize
 
-      def to_json
+      def to_json(*_args)
         JSON(to_h)
       end
 
@@ -52,20 +52,24 @@ module Trusona
       def determine_status(status)
         return Status::INACTIVE if status == 'inactive'
         return Status::ACTIVE if status == 'active'
+
         Status::UNKNOWN
       end
 
       def parse_emails(emails)
         return [] if emails.nil? || emails.empty?
+
         emails.map { |e| UserAccountEmail.new(e) }
       end
 
       def parse_max_level(metadata)
         return Level::ENTRY unless metadata
+
         level = metadata['max_level'] || metadata[:max_level]
 
         return Level::ESSENTIAL if level == 'essential'
         return Level::EXECUTIVE if level == 'executive'
+
         Level::ENTRY
       end
 

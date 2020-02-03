@@ -21,21 +21,25 @@ module Trusona
 
       def get(resource)
         raise Trusona::InvalidResourceError unless resource.id
+
         handle(@client.get(member_path(resource)), resource)
       end
 
       def create(resource)
         raise Trusona::InvalidResourceError unless resource.valid?
+
         handle(@client.post(collection_path, resource.to_json), resource)
       end
 
       def update(resource)
         raise Trusona::InvalidResourceError unless resource.id
+
         handle(@client.patch(member_path(resource), resource.to_json), resource)
       end
 
       def delete(resource)
         raise Trusona::InvalidResourceError unless resource.id
+
         handle(@client.delete(member_path(resource)), resource)
       end
 
@@ -59,6 +63,7 @@ module Trusona
         @response = response
 
         raise if resource.nil?
+
         case response.code
         when 200..299
           success(response, resource)
@@ -113,10 +118,12 @@ module Trusona
       def readable_error
         default = '[UNKNOWN] Error - An unknown error has occurred.'
         return default unless @response
+
         body = @response.to_h
         msg = []
         msg << "[#{body['error']}] #{body['message']} - #{body['description']}"
         return msg.join("\n") unless body['field_errors']
+
         body['field_errors'].each do |field|
           msg << "\t #{field.join(' => ')}"
         end

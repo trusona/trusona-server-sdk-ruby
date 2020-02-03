@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 module Trusona
   module Resources
     ##
@@ -18,6 +19,7 @@ module Trusona
       def initialize(params = {})
         @params = normalize_keys(params)
         return if @params.nil?
+
         self.accepted_level    = determine_accepted_level(@params)
         self.action            = @params[:action]
         self.device_identifier = @params[:device_identifier]
@@ -44,7 +46,8 @@ module Trusona
       end
 
       # rubocop:disable Metrics/MethodLength
-      def to_json
+      # rubocop:disable Metrics/AbcSize
+      def to_json(*_args)
         JSON(
           device_identifier: device_identifier,
           user_identifier: user_identifier,
@@ -64,10 +67,12 @@ module Trusona
         )
       end
       # rubocop:enable Metrics/MethodLength
+      # rubocop:enable Metrics/AbcSize
 
       def accepted?
         return true if status == :accepted
         return true if status == :accepted_at_higher_level
+
         false
       end
 
@@ -111,6 +116,7 @@ module Trusona
       def defaulting_to(value, param)
         return value if param.nil?
         return value if param.respond_to?(:empty?) && param.empty?
+
         param
       end
 
@@ -135,9 +141,12 @@ module Trusona
         true
       end
 
+      # rubocop:disable Layout/LineLength
       def identifier
         device_identifier || user_identifier || trucode_id || trusona_id || email
       end
+      # rubocop:enable Layout/LineLength
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

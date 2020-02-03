@@ -14,6 +14,44 @@ RSpec.describe Trusona::Trusonafication do
     @creation_params = @valid_params
   end
 
+  describe 'canceling a trusonafication' do
+    before do
+      allow(Trusona::Workers::TrusonaficationCanceler).to(
+        receive(:new)
+      ).and_return(double(cancel: double))
+    end
+
+    it 'requires a trusonafication id' do
+      expect { Trusona::Trusonafication.cancel(nil) }.to(
+        raise_error(Trusona::InvalidRecordIdentifier)
+      )
+
+      expect { Trusona::Trusonafication.cancel('') }.to(
+        raise_error(Trusona::InvalidRecordIdentifier)
+      )
+
+      expect { Trusona::Trusonafication.cancel('  ') }.to(
+        raise_error(Trusona::InvalidRecordIdentifier)
+      )
+
+      expect do
+        Trusona::Trusonafication.cancel('1234')
+      end.to_not(raise_error)
+    end
+
+    it 'tells the worker to cancel the trusonafication' do
+      stub = double(Trusona::Workers::TrusonaficationCanceler)
+
+      allow(Trusona::Workers::TrusonaficationCanceler).to(
+        receive(:new)
+      ).and_return(stub)
+
+      expect(stub).to(receive(:cancel)).with('1234')
+
+      Trusona::Trusonafication.cancel('1234')
+    end
+  end
+
   describe 'finding a trusonafication' do
     before do
       allow(Trusona::Workers::TrusonaficationFinder).to(

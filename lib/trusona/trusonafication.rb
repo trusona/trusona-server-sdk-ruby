@@ -29,6 +29,29 @@ module Trusona
     end
 
     ##
+    # Cancels existing IN_PROGRESS Trusonafications using their ID. Once
+    # canceled the trusonafication can no longer be acted upon.
+    #
+    # @param trusonafication_id [String] the ID of an existing Trusonafication
+    # @raise [Trusona::InvalidRecordIdentifier] if the +trusonafication_id+ is
+    #   empty or nil.
+    # @raise [Trusona::ResourceNotFoundError] if the resource does not exist
+    #   in the Trusona API
+    # @raise [Trusona::UnprocessableEntityError] if the resource could not be
+    #   cancel because it was not IN_PROGRESS
+    #
+    # @example
+    #   Trusona::Trusonafication.cancel('756c1034-2159-4cf9-bd48-662a60a7afff')
+    #
+    def self.cancel(trusonafication_id)
+      if trusonafication_id.nil? || trusonafication_id.strip.empty?
+        raise Trusona::InvalidRecordIdentifier, 'Trusonafication ID is missing'
+      end
+
+      Trusona::Workers::TrusonaficationCanceler.new.cancel(trusonafication_id)
+    end
+
+    ##
     # Creates a Trusonafication using the supplied options
     #
     # @param [Hash] params A list of options for creating the Trusonafication

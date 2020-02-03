@@ -22,7 +22,7 @@ module Trusona
       def headers
         @headers.merge(
           'x-date' => @date,
-          'Date'   => @date,
+          'Date' => @date,
           'X-Date' => @date,
           'Authorization' => @signature,
           'Content-Type' => determine_content_type
@@ -33,17 +33,20 @@ module Trusona
 
       def determine_content_type
         return '' if @method == 'GET' || @method == 'DELETE'
+
         Trusona::Api::HTTPClient::CONTENT_TYPE
       end
 
       def build_path(path)
         return path if @uri.query.nil? || @uri.query.empty?
+
         [@uri.path, @uri.query].join('?')
       end
 
       def build_uri(path, body)
         return build_uri_with_query(URI(path)) if URI(path).query
         return build_uri_with_body_as_query(path, body) if valid_hash_body(body)
+
         URI::HTTPS.build(host: @host, path: path)
       end
 

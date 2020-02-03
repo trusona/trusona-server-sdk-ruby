@@ -27,6 +27,7 @@ module Trusona
 
       def map_item(item, existing)
         return nil if item.nil? || item.empty?
+
         item = normalize_keys(item)
         item = merge_existing_state(item, existing.to_h)
         item = map_custom_fields(item)
@@ -40,6 +41,7 @@ module Trusona
 
       def map_custom_fields(response)
         return response if custom_mappings.nil? || custom_mappings.empty?
+
         custom_mappings.each do |original_key, new_key|
           value = response.delete(original_key)
           response[new_key] = value
@@ -51,17 +53,20 @@ module Trusona
       def response_invalid?(response)
         return true if response.nil?
         return true unless response.respond_to?(:to_h)
+
         false
       end
 
       def resource_invalid?(resource)
         return true if resource.nil?
         return true unless resource.respond_to?(:new)
+
         false
       end
 
       def existing_invalid?(existing)
         return true unless existing.respond_to?(:to_h)
+
         false
       end
     end

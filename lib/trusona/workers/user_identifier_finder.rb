@@ -12,6 +12,7 @@ module Trusona
       def find(opts)
         raise ArgumentError, 'Missing user identifier' unless
           contains_required_arguments(opts)
+
         @service.get(build_resource(opts))
       end
 

@@ -23,6 +23,7 @@ module Trusona
       def validate
         return false unless @user_identifier
         return false unless @device_identifier
+
         true
       end
     end
