@@ -57,7 +57,7 @@ module Trusona
         raise Trusona::SigningError unless response.verified?
       end
 
-      # rubocop:disable MethodLength
+      # rubocop:disable Metrics/MethodLength
       # rubocop:disable Metrics/CyclomaticComplexity
       def handle(response, resource = {})
         @response = response
@@ -83,7 +83,7 @@ module Trusona
           raise Trusona::RequestError, readable_error
         end
       end
-      # rubocop:enable MethodLength
+      # rubocop:enable Metrics/MethodLength
       # rubocop:enable Metrics/CyclomaticComplexity
 
       def success(response, resource)

@@ -28,10 +28,10 @@ module Trusona
     #
 
     def self.all(user_identifier: nil)
-      # rubocop:disable Metrics/LineLength
+      # rubocop:disable Layout/LineLength
       raise ArgumentError, 'A user identifier is required.' unless user_identifier
 
-      # rubocop:enable Metrics/LineLength
+      # rubocop:enable Layout/LineLength
 
       Trusona::Workers::IdentityDocumentFinder.new.find_all(user_identifier)
     end
@@ -55,10 +55,10 @@ module Trusona
     #   Trusona::IdentityDocument.find('4FDF044D-89FB-4043-947D-A029CF785B5F')
     #
     def self.find(id: nil)
-      # rubocop:disable Metrics/LineLength
+      # rubocop:disable Layout/LineLength
       raise ArgumentError, 'An Identity Document identifier is required.' unless id
 
-      # rubocop:enable Metrics/LineLength
+      # rubocop:enable Layout/LineLength
 
       Trusona::Workers::IdentityDocumentFinder.new.find(id)
     end

@@ -1,30 +1,31 @@
-sudo: false
 language: ruby
 cache:
   - bundler
 rvm:
-  - 2.4.3
-  - 2.5.1
+  - 2.4
+  - 2.5
+  - 2.6
+  - 2.7
 before_script:
   - openssl aes-256-cbc -K $encrypted_2ddff5084a28_key -iv $encrypted_2ddff5084a28_iv -in trusona.key.pem.enc -out trusona.key.pem -d
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
-  - bundle exec rspec spec -f p
+  - bundle exec rspec -f p
   - bundle exec rubocop lib -F
-  - gem build trusona.gemspec
+  - echo | bundle exec gem build trusona.gemspec
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - if [[ $TRAVIS_PULL_REQUEST == false ]] && [[ $TRAVIS_BRANCH == master ]] && [[ $TRAVIS_TEST_RESULT == 0 ]] && [[ $TRAVIS_JOB_NUMBER =~ ^.*.1$ ]]; then ./cc-test-reporter after-build -t simplecov --exit-code 0; fi
 deploy:
   provider: rubygems
   api_key: $RUBYGEMS_API_KEY
   gem: trusona
   gemspec: trusona.gemspec
-  skip_cleanup: true
+  cleanup: true
   on:
     tags: true
-    rvm: '2.4.3'
+    rvm: '2.6'
 notifications:
   slack:
     on_success: always
