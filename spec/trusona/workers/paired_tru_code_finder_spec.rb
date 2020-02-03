@@ -8,7 +8,7 @@ RSpec.describe Trusona::Workers::PairedTruCodeFinder do
       it 'raises an error' do
         expect {
           subject.find(nil)
-        }.to raise_error
+        }.to raise_error(RuntimeError)
       end
     end
     context 'the service has a trucode object for the given id' do
