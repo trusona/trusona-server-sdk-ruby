@@ -84,8 +84,8 @@ module Trusona
         attributes_present && attributes_filled
       end
 
-      # rubocop:disable MethodLength
-      # rubocop:disable CyclomaticComplexity
+      # rubocop:disable Metrics/MethodLength
+      # rubocop:disable Metrics/CyclomaticComplexity
       def status
         case @status
         when 'INVALID_TRUSONA_ID'
@@ -108,8 +108,8 @@ module Trusona
           :invalid
         end
       end
-      # rubocop:enable CyclomaticComplexity
-      # rubocop:enable MethodLength
+      # rubocop:enable Metrics/CyclomaticComplexity
+      # rubocop:enable Metrics/MethodLength
 
       private
 
