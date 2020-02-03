@@ -12,7 +12,7 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - bundle exec rspec spec -f p
-  - bundle exec rubocop lib/**/*.rb -F
+  - bundle exec rubocop lib -F
   - gem build trusona.gemspec
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
