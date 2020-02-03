@@ -32,6 +32,7 @@ require 'trusona/workers/device_user_binding_creator'
 require 'trusona/workers/device_user_binding_activator'
 require 'trusona/workers/trusonafication_creator'
 require 'trusona/workers/trusonafication_finder'
+require 'trusona/workers/trusonafication_canceler'
 require 'trusona/workers/identity_document_finder'
 require 'trusona/workers/device_finder'
 require 'trusona/workers/user_deactivator'
@@ -118,6 +119,7 @@ module Trusona
     end
 
     raise Trusona::ConfigurationError unless @config
+
     @config
   end
 
@@ -136,7 +138,7 @@ module Trusona
     attr_accessor :token, :secret
     attr_reader :api_host
 
-    def initialize()
+    def initialize
       @api_host = 'api.trusona.net'
     end
 
