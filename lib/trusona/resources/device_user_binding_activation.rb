@@ -11,7 +11,7 @@ module Trusona
 
       def initialize(params = {})
         normalized_params = normalize_keys(params)
-        @id     = normalized_params[:id]
+        @id = normalized_params[:id]
         @active = normalized_params[:active]
 
         @params = normalized_params
@@ -20,6 +20,7 @@ module Trusona
 
       def validate
         return false unless @id
+
         true
       end
     end

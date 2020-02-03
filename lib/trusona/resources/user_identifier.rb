@@ -19,7 +19,7 @@ module Trusona
         @params
       end
 
-      def to_json
+      def to_json(*_args)
         JSON(to_h)
       end
 
@@ -36,12 +36,14 @@ module Trusona
       def attributes_present
         return false unless @params.key?(:identifier)
         return false unless @params.key?(:trusona_id)
+
         true
       end
 
       def attributes_filled
         return false if @params.fetch(:identifier).empty?
         return false if @params.fetch(:trusona_id).empty?
+
         true
       end
     end

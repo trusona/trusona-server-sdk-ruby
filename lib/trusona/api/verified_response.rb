@@ -15,7 +15,9 @@ module Trusona
       end
 
       def to_h
-        JSON.parse(@unverified.body) rescue {}
+        JSON.parse(@unverified.body)
+      rescue StandardError
+        {}
       end
 
       def verified?
@@ -50,6 +52,7 @@ module Trusona
 
       def parse_path(uri)
         return uri.path unless uri.query
+
         [uri.path, uri.query].join('?')
       end
 
@@ -61,6 +64,7 @@ module Trusona
         server = @unverified.headers['server']
         response_type = @unverified.headers['Content-Type']
         return response_type unless server == LEGACY_SERVER_HEADER
+
         determine_request_content_type
       end
 
@@ -69,6 +73,7 @@ module Trusona
         return default_type unless @unverified.request
         return default_type unless @unverified.request.options
         return default_type unless @unverified.request.options[:headers]
+
         @unverified.request.options[:headers]['Content-Type']
       end
 

@@ -15,14 +15,14 @@ module Trusona
         normalized = normalize_keys(params)
 
         @params = normalized
-        @document_hash       = normalized[:document_hash]
-        @id                  = normalized[:id]
-        @type                = normalized[:type]
+        @document_hash = normalized[:document_hash]
+        @id = normalized[:id]
+        @type = normalized[:type]
         @verification_status = normalized[:verification_status]
         @user_identifier     = normalized[:user_identifier]
       end
 
-      def to_json
+      def to_json(*_args)
         JSON(
           hash: @document_hash,
           id: @id,

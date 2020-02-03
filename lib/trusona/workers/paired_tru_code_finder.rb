@@ -2,6 +2,7 @@
 
 module Trusona
   module Workers
+    # Paired trucode finder
     class PairedTruCodeFinder
       def initialize(service: Trusona::Services::PairedTruCodeService.new)
         @service = service

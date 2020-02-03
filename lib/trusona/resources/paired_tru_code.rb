@@ -2,6 +2,7 @@
 
 module Trusona
   module Resources
+    ## A Paired Trucode
     class PairedTruCode < BaseResource
       attr_reader :identifier
 

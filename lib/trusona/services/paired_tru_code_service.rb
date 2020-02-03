@@ -2,6 +2,7 @@
 
 module Trusona
   module Services
+    ## Paired trucode service
     class PairedTruCodeService < BaseService
       def initialize(client: Trusona::Api::HTTPClient.new)
         super(client: client, mapper: Trusona::Mappers::PairedTruCodeMapper.new)

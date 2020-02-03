@@ -14,6 +14,7 @@ module Trusona
       def create(params: {}, timeout: nil, &block)
         raise ArgumentError, 'Missing or empty params hash' if
           params.nil? || params.empty?
+
         resource = Trusona::Resources::Trusonafication.new(params)
         trusonafication = @service.create(resource)
         return trusonafication unless block_given?

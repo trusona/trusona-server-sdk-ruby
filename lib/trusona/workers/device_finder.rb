@@ -11,6 +11,7 @@ module Trusona
 
       def find(id = nil)
         raise(ArgumentError, 'A device identifier is required.') unless id
+
         @service.get(Trusona::Resources::Device.new(id: id))
       end
     end

@@ -6,9 +6,9 @@ module Trusona
     ## Identity Documents Service
     class IdentityDocumentsService < BaseService
       def initialize(
-          client: Trusona::Api::HTTPClient.new(Trusona.config.api_host),
-          mapper: Trusona::Mappers::IdentityDocumentMapper.new
-        )
+        client: Trusona::Api::HTTPClient.new(Trusona.config.api_host),
+        mapper: Trusona::Mappers::IdentityDocumentMapper.new
+      )
         @client = client
         @mapper = mapper
         @resource_path = '/api/v2/identity_documents'

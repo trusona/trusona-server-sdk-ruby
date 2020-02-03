@@ -7,6 +7,7 @@ module Trusona
     module Validators
       def present?(item)
         return false if item.nil? || item.to_s.empty?
+
         true
       end
 
