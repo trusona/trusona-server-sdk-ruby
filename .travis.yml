@@ -1,19 +1,18 @@
-os: linux
 language: ruby
 cache:
   - bundler
 rvm:
-  - 2.4.9
-  - 2.5.7
-  - 2.6.5
-  - 2.7.0
+  - 2.4
+  - 2.5
+  - 2.6
+  - 2.7
 before_script:
   - openssl aes-256-cbc -K $encrypted_2ddff5084a28_key -iv $encrypted_2ddff5084a28_iv -in trusona.key.pem.enc -out trusona.key.pem -d
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
-  - bundle exec rspec spec -f p
+  - bundle exec rspec -f p
   - bundle exec rubocop lib -F
   - gem build trusona.gemspec
 after_script:
@@ -26,7 +25,7 @@ deploy:
   cleanup: true
   on:
     tags: true
-    rvm: '2.6.5'
+    rvm: '2.6'
 notifications:
   slack:
     on_success: always
