@@ -22,7 +22,7 @@ deploy:
   api_key: $RUBYGEMS_API_KEY
   gem: trusona
   gemspec: trusona.gemspec
-  cleanup: true
+  skip_cleanup: true
   on:
     tags: true
     rvm: '2.6'
