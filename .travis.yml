@@ -13,7 +13,7 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - bundle exec rspec -f p
-  - bundle exec rubocop lib -F
+  - bundle exec rubocop lib
   - echo | bundle exec gem build trusona.gemspec
 after_script:
   - if [[ $TRAVIS_PULL_REQUEST == false ]] && [[ $TRAVIS_BRANCH == master ]] && [[ $TRAVIS_TEST_RESULT == 0 ]] && [[ $TRAVIS_JOB_NUMBER =~ ^.*.1$ ]]; then ./cc-test-reporter after-build -t simplecov --exit-code 0; fi
