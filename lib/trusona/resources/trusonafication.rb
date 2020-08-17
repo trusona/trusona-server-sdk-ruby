@@ -46,7 +46,6 @@ module Trusona
       end
 
       # rubocop:disable Metrics/MethodLength
-      # rubocop:disable Metrics/AbcSize
       def to_json(*_args)
         JSON(
           device_identifier: device_identifier,
@@ -67,7 +66,6 @@ module Trusona
         )
       end
       # rubocop:enable Metrics/MethodLength
-      # rubocop:enable Metrics/AbcSize
 
       def accepted?
         return true if status == :accepted
@@ -141,11 +139,9 @@ module Trusona
         true
       end
 
-      # rubocop:disable Layout/LineLength
       def identifier
         device_identifier || user_identifier || trucode_id || trusona_id || email
       end
-      # rubocop:enable Layout/LineLength
     end
   end
 end

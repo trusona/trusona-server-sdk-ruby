@@ -18,9 +18,7 @@ module Trusona
 
         resource = build_resource(opts)
 
-        if opts[:trusona_id] || opts['trusona_id']
-          return @user_accounts.get(resource)
-        end
+        return @user_accounts.get(resource) if opts[:trusona_id] || opts['trusona_id']
 
         @lookups.create(resource) if opts[:email] || opts['email']
       end

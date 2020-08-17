@@ -10,6 +10,8 @@
 *.gem
 *.key.pem
 
+vendor/
+
 # rspec failure tracking
 .rspec_status
 
