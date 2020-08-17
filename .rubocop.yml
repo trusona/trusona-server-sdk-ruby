@@ -1,0 +1,13 @@
+## https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml
+##
+Style/Documentation:
+  Enabled: false
+
+require: rubocop-performance
+
+AllCops:
+  Include:
+    - 'lib/**/*'
+Metrics:
+  Exclude:
+    - 'spec/**/*'
