@@ -1,6 +1,8 @@
 language: ruby
 cache:
   - bundler
+  - directories:
+    - vendor/
 rvm:
   - 2.6
   - 2.7
