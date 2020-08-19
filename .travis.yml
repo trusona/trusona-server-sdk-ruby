@@ -6,6 +6,8 @@ cache:
 rvm:
   - 2.6
   - 2.7
+before_install:
+  - export SEMVER_TAG=`echo $TRAVIS_TAG | sed -e s/v//g`
 before_script:
   - openssl req -utf8 -config trusona.cnf -new -verify -newkey rsa:4096 -days 1 -nodes -x509 -keyout trusona.key.pem -out trusona.pub.pem
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -20,7 +22,7 @@ after_script:
 deploy:
   provider: rubygems
   api_key: $RUBYGEMS_API_KEY
-  gemspec: trusona.gemspec
+  gem: trusona-$SEMVER_TAG.gem
   skip_cleanup: true
   on:
     tags: true
