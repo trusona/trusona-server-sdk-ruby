@@ -19,7 +19,7 @@ after_success:
   - if [[ $TRAVIS_PULL_REQUEST == false ]] && [[ $TRAVIS_BRANCH == master ]] && [[ $TRAVIS_JOB_NUMBER =~ ^.*.1$ ]]; then ./cc-test-reporter after-build -t simplecov --exit-code 0; fi
 before_deploy:
   - cp trusona-*.gem trusona.gem
-  - awk 'BEGIN { print "---\n:rubygems_api_key: $RUBYGEMS_API_KEY" }' > ~/.gem/credentials
+  - awk 'BEGIN { print "---\n:rubygems_api_key: '$RUBYGEMS_API_KEY'" }' > ~/.gem/credentials
   - chmod 600 ~/.gem/credentials
 deploy:
   provider: script
