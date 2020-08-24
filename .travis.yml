@@ -16,7 +16,7 @@ before_script:
 script:
   - bundle exec rspec -f p
   - bundle exec rubocop lib
-  - echo | bundle exec gem build trusona.gemspec
+  - bundle exec gem build trusona.gemspec --silent
 after_script:
   - if [[ $TRAVIS_PULL_REQUEST == false ]] && [[ $TRAVIS_BRANCH == master ]] && [[ $TRAVIS_TEST_RESULT == 0 ]] && [[ $TRAVIS_JOB_NUMBER =~ ^.*.1$ ]]; then ./cc-test-reporter after-build -t simplecov --exit-code 0; fi
 before_deploy:
@@ -25,6 +25,7 @@ deploy:
   provider: rubygems
   api_key: $RUBYGEMS_API_KEY
   gem: trusona
+  gemspec: trusona.gemspec
   skip_cleanup: true
   on:
     tags: true

@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://trusona.com'
   spec.license       = 'Apache-2.0'
   spec.cert_chain    = ['trusona.pub.pem']
-  spec.signing_key = 'trusona.key.pem' if $0 =~ /gem\z/
+  spec.signing_key   = 'trusona.key.pem' if $0 =~ /gem\z/
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
