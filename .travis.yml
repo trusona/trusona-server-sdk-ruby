@@ -25,7 +25,7 @@ deploy:
   provider: script
   edge: true
   script: gem push trusona.gem
-  cleanup: true
+  cleanup: false
   on:
     branch: wip-deploy
     rvm: '2.6'
