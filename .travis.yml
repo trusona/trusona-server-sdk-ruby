@@ -6,8 +6,6 @@ cache:
 rvm:
   - 2.6
   - 2.7
-before_install:
-  - export SEMVER_TAG=`echo $TRAVIS_TAG | sed -e s/v//g`
 before_script:
   - openssl req -utf8 -config trusona.cnf -new -verify -newkey rsa:4096 -days 1 -nodes -x509 -keyout trusona.key.pem -out trusona.pub.pem
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -16,16 +14,18 @@ before_script:
 script:
   - bundle exec rspec -f p
   - bundle exec rubocop lib
-  - echo | bundle exec gem build trusona.gemspec
-after_script:
-  - if [[ $TRAVIS_PULL_REQUEST == false ]] && [[ $TRAVIS_BRANCH == master ]] && [[ $TRAVIS_TEST_RESULT == 0 ]] && [[ $TRAVIS_JOB_NUMBER =~ ^.*.1$ ]]; then ./cc-test-reporter after-build -t simplecov --exit-code 0; fi
+  - bundle exec gem build trusona.gemspec --silent
+after_success:
+  - if [[ $TRAVIS_PULL_REQUEST == false ]] && [[ $TRAVIS_BRANCH == master ]] && [[ $TRAVIS_JOB_NUMBER =~ ^.*.1$ ]]; then ./cc-test-reporter after-build -t simplecov --exit-code 0; fi
 before_deploy:
-  - cp trusona-$SEMVER_TAG.gem trusona.gem
+  - cp trusona-*.gem trusona.gem
+  - "echo ---$'\n':rubygems_api_key: $RUBYGEMS_API_KEY > ~/.gem/credentials"
+  - chmod 600 ~/.gem/credentials
 deploy:
-  provider: rubygems
-  api_key: $RUBYGEMS_API_KEY
-  gem: trusona
-  skip_cleanup: true
+  provider: script
+  edge: true
+  script: gem push trusona.gem
+  cleanup: false
   on:
     tags: true
     rvm: '2.6'
