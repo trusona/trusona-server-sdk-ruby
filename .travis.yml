@@ -27,13 +27,8 @@ deploy:
   script: gem push trusona.gem
   cleanup: false
   on:
-    branch: wip-deploy
+    tags: true
     rvm: '2.6'
-
-#  on:
-#    tags: true
-#    rvm: '2.6'
-#
 
 notifications:
   slack:
