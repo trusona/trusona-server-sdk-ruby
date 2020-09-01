@@ -29,7 +29,6 @@ deploy:
   on:
     tags: true
     rvm: '2.6'
-
 notifications:
   slack:
     on_success: always
