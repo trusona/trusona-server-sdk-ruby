@@ -17,7 +17,7 @@ module Trusona
 
         resource = Trusona::Resources::Trusonafication.new(params)
         trusonafication = @service.create(resource)
-        return trusonafication unless block_given?
+        return trusonafication unless block
 
         handle_block(trusonafication, @service, timeout, block)
       end

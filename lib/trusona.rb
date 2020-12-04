@@ -43,7 +43,6 @@ require 'trusona/services/user_accounts_service'
 require 'trusona/services/account_lookups_service'
 require 'trusona/services/tru_codes_service'
 require 'trusona/services/trusonafication_service'
-require 'trusona/services/tru_codes_service'
 require 'trusona/services/user_identifiers_service'
 require 'trusona/services/device_user_bindings_service'
 require 'trusona/services/identity_documents_service'
@@ -55,7 +54,6 @@ require 'trusona/mappers/base_mapper'
 require 'trusona/mappers/tru_code_mapper'
 require 'trusona/mappers/nil_mapper'
 require 'trusona/mappers/trusonafication_mapper'
-require 'trusona/mappers/tru_code_mapper'
 require 'trusona/mappers/user_account_mapper'
 require 'trusona/mappers/user_identifier_mapper'
 require 'trusona/mappers/device_user_binding_mapper'
@@ -82,6 +80,7 @@ module Trusona
   #
   ## Organizing HTTP and HMAC related items
   module Api; end
+
   #
   ## Organizes Resources
   module Resources; end

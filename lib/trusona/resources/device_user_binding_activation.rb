@@ -10,6 +10,8 @@ module Trusona
       attr_reader :id, :active
 
       def initialize(params = {})
+        super(params)
+
         normalized_params = normalize_keys(params)
         @id = normalized_params[:id]
         @active = normalized_params[:active]

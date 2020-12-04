@@ -26,7 +26,7 @@ module Trusona
       def signature
         Base64.strict_encode64(
           OpenSSL::HMAC.hexdigest(
-            OpenSSL::Digest::SHA256.new, @secret, prepare_data
+            OpenSSL::Digest.new('SHA256'), @secret, prepare_data
           )
         )
       end
@@ -37,7 +37,7 @@ module Trusona
         digestable_body = ''
         digestable_body = @body unless @body.nil? || @body.empty?
 
-        OpenSSL::Digest::MD5.new.hexdigest(digestable_body)
+        OpenSSL::Digest.new('MD5').hexdigest(digestable_body)
       end
 
       def invalid_param?(param)

@@ -12,8 +12,9 @@ module Trusona
                     :user_identifier
 
       def initialize(params)
-        normalized = normalize_keys(params)
+        super(params)
 
+        normalized = normalize_keys(params)
         @params = normalized
         @document_hash = normalized[:document_hash]
         @id = normalized[:id]

@@ -17,6 +17,8 @@ module Trusona
       # rubocop:disable Metrics/AbcSize
       # rubocop:disable Metrics/MethodLength
       def initialize(params = {})
+        super(params)
+
         @params = normalize_keys(params)
         return if @params.nil?
 

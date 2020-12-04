@@ -9,6 +9,7 @@ module Trusona
         client: Trusona::Api::HTTPClient.new(Trusona.config.api_host),
         mapper: Trusona::Mappers::IdentityDocumentMapper.new
       )
+        super()
         @client = client
         @mapper = mapper
         @resource_path = '/api/v2/identity_documents'

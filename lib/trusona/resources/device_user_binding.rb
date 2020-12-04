@@ -10,6 +10,8 @@ module Trusona
       attr_reader :user_identifier, :device_identifier, :active, :id
 
       def initialize(params = {})
+        super(params)
+
         normalized_params  = normalize_keys(params)
         @user_identifier   = normalized_params[:user_identifier]
         @device_identifier = normalized_params[:device_identifier]

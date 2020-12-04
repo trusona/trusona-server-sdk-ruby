@@ -9,6 +9,7 @@ module Trusona
       attr_reader :identifier, :trusona_id
 
       def initialize(params = {})
+        super(params)
         @params     = params
         @identifier = params[:identifier]
         @trusona_id = params[:trusona_id]

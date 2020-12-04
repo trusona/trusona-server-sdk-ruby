@@ -26,6 +26,7 @@ module Trusona
       # rubocop:disable Metrics/MethodLength
       # rubocop:disable Metrics/AbcSize
       def initialize(params = {})
+        super(params)
         params_with_symbol_keys = normalize_keys(params)
         @trusona_id = params_with_symbol_keys[:trusona_id]
         @id         = @trusona_id
@@ -77,6 +78,7 @@ module Trusona
       ## An email associated with a user account
       class UserAccountEmail
         attr_reader :email, :id, :verified
+
         def initialize(email = {})
           @email    = email[:email] || email['email']
           @id       = email[:id] || email['id']

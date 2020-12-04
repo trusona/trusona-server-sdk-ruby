@@ -10,9 +10,7 @@ module Trusona
       middle  = jwt_body(jwt)
       decoded = Base64.decode64(middle)
       parsed = parse_jwt(decoded)
-      relying_party_id = extract_subject(parsed)
-
-      relying_party_id
+      extract_subject(parsed)
     end
 
     private

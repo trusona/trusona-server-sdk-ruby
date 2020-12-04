@@ -6,6 +6,8 @@ module Trusona
     ## User Identifiers Service
     class UserIdentifiersService < BaseService
       def initialize(client: nil, mapper: nil)
+        super()
+
         @client = client ||
                   Trusona::Api::HTTPClient.new(Trusona.config.api_host)
         @mapper = mapper || Trusona::Mappers::UserIdentifierMapper.new
