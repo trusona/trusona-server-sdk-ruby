@@ -9,6 +9,7 @@ module Trusona
         client: Trusona::Api::HTTPClient.new(Trusona.config.api_host),
         mapper: Trusona::Mappers::DeviceUserBindingMapper.new
       )
+        super(client, mapper)
         @client = client
         @mapper = mapper
         @resource_path = '/api/v2/user_devices'

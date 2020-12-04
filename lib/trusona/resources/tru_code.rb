@@ -11,6 +11,8 @@ module Trusona
       attr_reader :relying_party_id, :payload, :id
 
       def initialize(params = {})
+        super(params)
+
         normalized_params = normalize_keys(params)
         @id = normalized_params[:id]
         @payload = normalized_params[:payload]

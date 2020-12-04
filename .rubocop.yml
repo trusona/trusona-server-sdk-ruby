@@ -6,8 +6,11 @@ Style/Documentation:
 require: rubocop-performance
 
 AllCops:
+  NewCops: enable
+  SuggestExtensions: false
   Include:
     - 'lib/**/*'
+
 Metrics:
   Exclude:
     - 'spec/**/*'
