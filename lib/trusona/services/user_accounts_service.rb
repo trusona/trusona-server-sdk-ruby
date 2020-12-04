@@ -9,7 +9,7 @@ module Trusona
         @client = client || Trusona::Api::HTTPClient.new(
           Trusona.config.api_host
         )
-        super(client)
+        super()
         @mapper = mapper || Trusona::Mappers::UserAccountMapper.new
         @resource_path = '/internal/v1/users'
       end

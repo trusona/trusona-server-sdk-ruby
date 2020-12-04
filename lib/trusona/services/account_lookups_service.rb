@@ -6,7 +6,7 @@ module Trusona
     ## User Accounts Service
     class AccountLookupsService < BaseService
       def initialize(client: nil, mapper: nil)
-        super(client, mapper)
+        super()
 
         @client = client || Trusona::Api::HTTPClient.new(
           Trusona.config.api_host
