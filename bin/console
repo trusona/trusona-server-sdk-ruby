@@ -10,9 +10,9 @@ require 'trusona'
 # with your gem easier. You can also use a different console, if you like.
 
 Trusona.config do |c|
-  c.api_host = ENV['TRUSONA_API_HOST']
-  c.secret = ENV['TRUSONA_SECRET']
-  c.token  = ENV['TRUSONA_TOKEN']
+  c.api_host = ENV.fetch('TRUSONA_API_HOST', nil)
+  c.secret = ENV.fetch('TRUSONA_SECRET', nil)
+  c.token  = ENV.fetch('TRUSONA_TOKEN', nil)
 end
 
 # (If you use this, don't forget to add pry to your Gemfile!)
