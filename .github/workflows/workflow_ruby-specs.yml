@@ -10,7 +10,7 @@ jobs:
       with:
         bundler-cache: true
 
-    - run: openssl req -utf8 -config trusona.cnf -new -verify -newkey rsa:4096 -days 1 -nodes -x509 -keyout trusona.key.pem -out trusona.pub.pem
+    ## - run: openssl req -utf8 -config trusona.cnf -new -verify -newkey rsa:4096 -days 1 -nodes -x509 -keyout trusona.key.pem -out trusona.pub.pem
     - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - run: chmod +x ./cc-test-reporter
     - run: ./cc-test-reporter before-build
