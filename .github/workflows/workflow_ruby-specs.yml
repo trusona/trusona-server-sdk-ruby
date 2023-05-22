@@ -1,0 +1,24 @@
+name: Ruby CI
+on: [ workflow_call ]
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - run: openssl req -utf8 -config trusona.cnf -new -verify -newkey rsa:4096 -days 1 -nodes -x509 -keyout trusona.key.pem -out trusona.pub.pem
+    - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - run: chmod +x ./cc-test-reporter
+    - run: ./cc-test-reporter before-build
+
+    - run: bundle install
+    - run: bundle exec rspec -f p
+    - run: bundle exec rubocop lib
+    - run: bundle exec gem build trusona.gemspec --silent
+
+    - run: ./cc-test-reporter after-build -t simplecov --exit-code 0
+      if: ${{ success() && github.event_name == 'push' && github.ref_name == 'master' }}

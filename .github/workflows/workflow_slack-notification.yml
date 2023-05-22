@@ -1,0 +1,30 @@
+name: Slack Notification
+on:
+  workflow_call:
+    inputs:
+      DISPLAYED_USERNAME:
+        required: true
+        type: string
+      SLACK_MESSAGE:
+        required: true
+        type: string
+    secrets:
+      SLACK_WEBHOOK_URL:
+        required: true
+jobs:
+  slack:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Slack Notification
+      uses: slackapi/slack-github-action@v1.18.0
+      env:
+        DISPLAYED_USERNAME: ${{ inputs.DISPLAYED_USERNAME }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_MESSAGE: ${{ inputs.SLACK_MESSAGE }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      with:
+        payload: |
+          {
+            "username": "${{ env.DISPLAYED_USERNAME }}",
+            "text": "${{ env.SLACK_MESSAGE }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+          }

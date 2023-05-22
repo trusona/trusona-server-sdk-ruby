@@ -1,0 +1,35 @@
+name: RUBY CI
+on:
+  pull_request:
+    branches: [ master ]
+  push:
+    branches: [ '*' ]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  test:
+    uses: ./.github/workflows/workflow_ruby-specs.yml
+
+  success_notification:
+    uses: ./.github/workflows/workflow_slack-notification.yml
+    needs: [ test ]
+    if: ${{ success() }}
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    with:
+      DISPLAYED_USERNAME: Trusona Server SDK Ruby CI
+      SLACK_MESSAGE: 'CI run completed successfully! :tada: :tada:'
+
+  failure_notification:
+    uses: ./.github/workflows/workflow_slack-notification.yml
+    needs: [ test ]
+    if: ${{ failure() }}
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    with:
+      DISPLAYED_USERNAME: Trusona Server SDK Ruby CI
+      SLACK_MESSAGE: 'CI run failed! Shame! Shame! :sadpanda: :sadpanda:'
