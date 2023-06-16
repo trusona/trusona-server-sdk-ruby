@@ -9,7 +9,7 @@ module Trusona
         client: Trusona::Api::HTTPClient.new(Trusona.config.api_host),
         mapper: Trusona::Mappers::TruCodeMapper.new
       )
-        super(client: client, mapper: mapper)
+        super(client:, mapper:)
         @client = client
         @mapper = mapper
         @resource_path = '/api/v2/trucodes'

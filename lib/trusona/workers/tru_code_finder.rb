@@ -12,7 +12,7 @@ module Trusona
       def find(id)
         raise ArgumentError, 'Missing TruCode Id' unless id
 
-        resource = Trusona::Resources::BaseResource.new(id: id)
+        resource = Trusona::Resources::BaseResource.new(id:)
         @service.get(resource)
       end
     end

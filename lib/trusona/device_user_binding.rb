@@ -35,7 +35,7 @@ module Trusona
       raise ArgumentError, 'Device is missing' if device.nil? || device.empty?
 
       Trusona::Workers::DeviceUserBindingCreator.new.create(
-        user: user, device: device
+        user:, device:
       )
     end
 
@@ -51,7 +51,7 @@ module Trusona
     def self.activate(id: nil)
       raise ArgumentError if id.nil? || id.empty?
 
-      Trusona::Workers::DeviceUserBindingActivator.new.activate(id: id)
+      Trusona::Workers::DeviceUserBindingActivator.new.activate(id:)
     end
   end
 end

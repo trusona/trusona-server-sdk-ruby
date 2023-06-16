@@ -50,21 +50,21 @@ module Trusona
       # rubocop:disable Metrics/MethodLength
       def to_json(*_args)
         JSON(
-          device_identifier: device_identifier,
-          user_identifier: user_identifier,
-          trucode_id: trucode_id,
-          trusona_id: trusona_id,
-          email: email,
-          resource: resource,
-          action: action,
+          device_identifier:,
+          user_identifier:,
+          trucode_id:,
+          trusona_id:,
+          email:,
+          resource:,
+          action:,
           desired_level: level,
-          id: id,
+          id:,
           status: @status,
-          prompt: prompt,
-          user_presence: user_presence,
-          custom_fields: custom_fields,
+          prompt:,
+          user_presence:,
+          custom_fields:,
           expires_at: expires_at&.iso8601,
-          callback_url: callback_url
+          callback_url:
         )
       end
       # rubocop:enable Metrics/MethodLength
