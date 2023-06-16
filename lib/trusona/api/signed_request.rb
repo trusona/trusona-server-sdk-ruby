@@ -47,7 +47,7 @@ module Trusona
         return build_uri_with_query(URI(path)) if URI(path).query
         return build_uri_with_body_as_query(path, body) if valid_hash_body(body)
 
-        URI::HTTPS.build(host: @host, path: path)
+        URI::HTTPS.build(host: @host, path:)
       end
 
       def valid_hash_body(body)
@@ -83,7 +83,7 @@ module Trusona
       def build_uri_with_body_as_query(path, body)
         URI::HTTPS.build(
           host: @host,
-          path: path,
+          path:,
           query: URI.encode_www_form(body)
         )
       end

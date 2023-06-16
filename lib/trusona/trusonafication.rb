@@ -110,7 +110,7 @@ module Trusona
 
       Trusona::Workers::TrusonaficationCreator.new.create(
         params: normal,
-        timeout: timeout,
+        timeout:,
         &block
       )
     end
@@ -141,7 +141,7 @@ module Trusona
   class EssentialTrusonafication < Trusonafication
     def self.create(params: {}, timeout: nil, &block)
       level = params[:user_presence] == false ? 1 : 2
-      super(params: params.merge!(level: level), timeout: timeout, &block)
+      super(params: params.merge!(level:), timeout:, &block)
     end
   end
 
@@ -161,7 +161,7 @@ module Trusona
   #
   class ExecutiveTrusonafication < Trusonafication
     def self.create(params: {}, timeout: nil, &block)
-      super(params: params.merge!(level: 3), timeout: timeout, &block)
+      super(params: params.merge!(level: 3), timeout:, &block)
     end
   end
 end

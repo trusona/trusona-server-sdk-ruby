@@ -17,7 +17,7 @@ module Trusona
         parsed_response = response.to_h
 
         if parsed_response.is_a?(Array)
-          parsed_response.map { |r| map_item(r, existing) }.compact
+          parsed_response.filter_map { |r| map_item(r, existing) }
         else
           map_item(parsed_response, existing)
         end

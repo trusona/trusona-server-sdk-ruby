@@ -35,7 +35,7 @@ RSpec.describe Trusona::Mappers::BaseMapper do
     context 'when the response uses strings as keys' do
       it 'should correctly map the stringed keys' do
         stringed_response = { 'id' => 1 }
-        expect(@resource).to receive(:new).with(id: 1)
+        expect(@resource).to receive(:new).with({id: 1})
         @sut.map(stringed_response)
       end
     end
@@ -51,21 +51,21 @@ RSpec.describe Trusona::Mappers::BaseMapper do
       it 'should merge the existing values into the response' do
         existing = { id: 2 }
         response = { name: 'widget' }
-        expect(@resource).to receive(:new).with(id: 2, name: 'widget')
+        expect(@resource).to receive(:new).with({id: 2, name: 'widget'})
         @sut.map(response, existing)
       end
 
       it 'should overwrite existing values with response values' do
         existing = { id: 2, name: 'foobar' }
         response = { id: 2, name: 'bazqux' }
-        expect(@resource).to receive(:new).with(id: 2, name: 'bazqux')
+        expect(@resource).to receive(:new).with({id: 2, name: 'bazqux'})
         @sut.map(response, existing)
       end
 
       it 'should ignore existing nil values' do
         existing = { id: 2, name: nil }
         response = { name: 'widget' }
-        expect(@resource).to receive(:new).with(id: 2, name: 'widget')
+        expect(@resource).to receive(:new).with({id: 2, name: 'widget'})
         @sut.map(response, existing)
       end
     end
@@ -73,7 +73,7 @@ RSpec.describe Trusona::Mappers::BaseMapper do
     context 'when the response keys do not match the resource attributes' do
       it 'the custom mapping should be used to populate mismatched values' do
         response = { widget_id: 1, name: 'widget' }
-        expect(@resource).to receive(:new).with(id: 1, name: 'widget')
+        expect(@resource).to receive(:new).with({id: 1, name: 'widget'})
         @sut.custom_mappings = { widget_id: :id }
         @sut.map(response, {})
       end

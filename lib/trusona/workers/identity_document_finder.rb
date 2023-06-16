@@ -19,7 +19,7 @@ module Trusona
       def find(id = nil)
         raise(ArgumentError, 'An Identity Document id is required.') unless id
 
-        @service.get(Trusona::Resources::IdentityDocument.new(id: id))
+        @service.get(Trusona::Resources::IdentityDocument.new(id:))
       end
     end
   end

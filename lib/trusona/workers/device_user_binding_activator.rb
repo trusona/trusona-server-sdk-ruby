@@ -14,7 +14,7 @@ module Trusona
           id.nil? || id.empty?
 
         resource = Trusona::Resources::DeviceUserBindingActivation.new(
-          id: id,
+          id:,
           active: true
         )
 
