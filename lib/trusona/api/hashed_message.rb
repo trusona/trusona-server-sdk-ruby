@@ -47,7 +47,8 @@ module Trusona
       def invalid_method?(method)
         http_methods = %w[GET POST DELETE PATCH PUT]
         return true if invalid_param?(method)
-        return true unless http_methods.include?(method.strip.upcase)
+
+        true unless http_methods.include?(method.strip.upcase)
       end
 
       def prepare_data
