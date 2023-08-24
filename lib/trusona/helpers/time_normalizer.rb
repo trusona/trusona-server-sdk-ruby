@@ -10,7 +10,8 @@ module Trusona
         return time.to_time.gmtime if time.is_a?(DateTime)
         return time.gmtime if time.is_a?(Time)
         return Time.parse(time).gmtime if time.is_a?(String)
-        return nil if time.is_a?(Date)
+
+        nil if time.is_a?(Date)
       end
     end
   end
