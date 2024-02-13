@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'activesupport', '~> 7.1'
   spec.add_development_dependency 'bump', '~> 0.5'
-  spec.add_development_dependency 'dotenv', '~> 2.2'
+  spec.add_development_dependency 'dotenv', '~> 3.0'
   spec.add_development_dependency 'guard', '~> 2.14'
   spec.add_development_dependency 'guard-rspec', '~> 4.7'
   spec.add_development_dependency 'guard-rubocop', '~> 1.3'
