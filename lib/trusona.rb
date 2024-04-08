@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'httparty'
+require 'ostruct'
 
 require 'trusona/helpers/key_normalizer'
 require 'trusona/helpers/time_normalizer'
