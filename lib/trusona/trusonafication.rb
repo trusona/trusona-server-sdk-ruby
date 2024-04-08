@@ -99,7 +99,7 @@ module Trusona
     #  Typically the result of invalid or revoked Trusona SDK keys.
     # @raise [Trusona::ApiError] if the Trusona API is experiencing problems.
     #
-    def self.create(params: {}, timeout: nil, &block)
+    def self.create(params: {}, timeout: nil, &)
       normal = normalize_keys(params)
 
       raise ArgumentError, 'Missing user identifier' unless
@@ -111,7 +111,7 @@ module Trusona
       Trusona::Workers::TrusonaficationCreator.new.create(
         params: normal,
         timeout:,
-        &block
+        &
       )
     end
 
