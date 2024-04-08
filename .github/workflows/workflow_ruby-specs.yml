@@ -20,5 +20,5 @@ jobs:
     - run: bundle exec rubocop lib
     - run: bundle exec gem build trusona.gemspec --silent
 
-    - run: ./cc-test-reporter after-build -t simplecov --exit-code 0
-      if: ${{ success() && github.event_name == 'push' && github.ref_name == 'master' }}
+    ## - run: ./cc-test-reporter after-build -t simplecov --exit-code 0
+    ##  if: ${{ success() && github.event_name == 'push' && github.ref_name == 'master' }}
