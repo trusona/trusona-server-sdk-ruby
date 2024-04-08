@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Slack Notification
-      uses: slackapi/slack-github-action@v1.18.0
+      uses: slackapi/slack-github-action@v1
       env:
         DISPLAYED_USERNAME: ${{ inputs.DISPLAYED_USERNAME }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
